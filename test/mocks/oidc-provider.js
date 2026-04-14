@@ -1,23 +1,20 @@
-class OidcProvider {
-  use() {}
-}
+function OidcProvider() {}
+OidcProvider.prototype.use = () => {};
 
-class Check {
-  constructor() {}
-}
+function Check() {}
 
-class Prompt {
-  constructor() {
-    this.checks = { add() {} };
-  }
+function Prompt() {
+  this.checks = {
+    add: () => {},
+  };
 }
 
 const interactionPolicy = {
   Check,
   Prompt,
   base: () => ({
-    add() {},
-    get: () => ({ checks: { add() {} }}),
+    add: () => {},
+    get: () => ({ checks: { add: () => {} }}),
   }),
 };
 

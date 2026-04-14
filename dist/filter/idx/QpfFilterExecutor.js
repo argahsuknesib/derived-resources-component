@@ -9,7 +9,11 @@ const QueryResourceIdentifier_1 = require("../../QueryResourceIdentifier");
 const StreamUtil_1 = require("../../util/StreamUtil");
 const Vocabularies_1 = require("../../Vocabularies");
 const FilterExecutor_1 = require("../FilterExecutor");
-const { quad, namedNode, literal, blankNode, defaultGraph } = n3_1.DataFactory;
+const quad = n3_1.DataFactory.quad.bind(n3_1.DataFactory);
+const namedNode = n3_1.DataFactory.namedNode.bind(n3_1.DataFactory);
+const literal = n3_1.DataFactory.literal.bind(n3_1.DataFactory);
+const blankNode = n3_1.DataFactory.blankNode.bind(n3_1.DataFactory);
+const defaultGraph = n3_1.DataFactory.defaultGraph.bind(n3_1.DataFactory);
 // Variable mappings for the QPF endpoint.
 const VAR_POSITIONS = {
     s: 'subject',

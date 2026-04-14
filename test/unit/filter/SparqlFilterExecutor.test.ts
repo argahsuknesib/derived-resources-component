@@ -8,8 +8,9 @@ import { DataFactory, Store } from 'n3';
 import type { N3FilterExecutorInput } from '../../../src/filter/N3FilterExecutor';
 import { SparqlFilterExecutor } from '../../../src/filter/SparqlFilterExecutor';
 import { DERIVED_TYPES } from '../../../src/Vocabularies';
-const { literal } = DataFactory;
-const { namedNode } = DataFactory;
+
+const literal = DataFactory.literal.bind(DataFactory);
+const namedNode = DataFactory.namedNode.bind(DataFactory);
 
 describe('SparqlFilterExecutor', (): void => {
   let input: N3FilterExecutorInput;

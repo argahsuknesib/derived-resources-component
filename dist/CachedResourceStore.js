@@ -5,6 +5,7 @@ const global_logger_factory_1 = require("global-logger-factory");
 const community_server_1 = require("@solid/community-server");
 const lru_cache_1 = require("lru-cache");
 const CacheUtil_1 = require("./util/CacheUtil");
+const QueryResourceIdentifier_1 = require("./QueryResourceIdentifier");
 /**
  * A {@link ResourceStore} that caches representation responses.
  * Caching is done using the identifier as key, so this should be at the end of the store chain.
@@ -99,6 +100,9 @@ class CachedResourceStore extends community_server_1.PassthroughStore {
      */
     invalidateCache(changeMap) {
         for (const identifier of changeMap.keys()) {
+            if (!(0, QueryResourceIdentifier_1.isResourceIdentifier)(identifier)) {
+                throw new TypeError('Unexpected change map key: expected ResourceIdentifier.');
+            }
             this.invalidateIdentifier(identifier);
             if (this.metadataStrategy.isAuxiliaryIdentifier(identifier)) {
                 this.invalidateIdentifier(this.metadataStrategy.getSubjectIdentifier(identifier));

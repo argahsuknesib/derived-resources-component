@@ -12,7 +12,8 @@ import {
 import { DataFactory } from 'n3';
 import type { DerivationManager } from '../../src/DerivationManager';
 import { DerivedResourceStore } from '../../src/DerivedResourceStore';
-const { namedNode } = DataFactory;
+
+const namedNode = DataFactory.namedNode.bind(DataFactory);
 
 describe('DerivedResourceStore', (): void => {
   const identifier = { path: 'https://example.com/foo' };

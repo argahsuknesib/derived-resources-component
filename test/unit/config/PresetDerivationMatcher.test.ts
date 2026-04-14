@@ -2,7 +2,8 @@ import { NotImplementedHttpError, RepresentationMetadata } from '@solid/communit
 import { DataFactory } from 'n3';
 import type { DerivationMatcher, DerivationMatcherInput } from '../../../src/config/DerivationMatcher';
 import { PresetDerivationMatcher } from '../../../src/config/PresetDerivationMatcher';
-const { namedNode } = DataFactory;
+
+const namedNode = DataFactory.namedNode.bind(DataFactory);
 
 describe('PresetDerivationMatcher', (): void => {
   const input: DerivationMatcherInput = {

@@ -4,7 +4,6 @@ exports.LatestFilterExecutor = void 0;
 const community_server_1 = require("@solid/community-server");
 const Vocabularies_1 = require("../Vocabularies");
 const FilterExecutor_1 = require("./FilterExecutor");
-// TODO:
 class LatestFilterExecutor extends FilterExecutor_1.FilterExecutor {
     async canHandle({ filter }) {
         if (!filter.type.equals(Vocabularies_1.DERIVED_TYPES.terms.String) || filter.data !== 'latest') {

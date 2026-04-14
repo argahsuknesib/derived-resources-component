@@ -3,7 +3,7 @@ name: CSS8 Node22 Verify
 on:
   push:
     branches:
-      - "**"
+      - '**'
   pull_request:
 
 jobs:
@@ -18,11 +18,29 @@ jobs:
       - name: Setup Node 22
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: '22'
+          cache: npm
 
       - name: Install
         run: npm ci
 
-      - name: TypeScript Build
-        run: npm run build:ts
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit + Integration Tests
+        run: npm test -- --runInBand
+
+      - name: Full Build
+        run: npm run build
+
+      - name: CSS8 Runtime Boot Smoke Test
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 90s npm run -s start:example > boot.log 2>&1 || status=$?
+          status=${status:-0}
+          if [ "$status" -ne 0 ] && [ "$status" -ne 124 ]; then
+            cat boot.log
+            exit "$status"
+          fi
+          grep -q "Listening to server at http://localhost:3000/" boot.log

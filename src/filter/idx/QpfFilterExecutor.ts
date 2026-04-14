@@ -20,7 +20,11 @@ import type { FilterExecutorInput } from '../FilterExecutor';
 import { FilterExecutor } from '../FilterExecutor';
 import type { QuadPatternExecutor } from './QuadPatternExecutor';
 
-const { quad, namedNode, literal, blankNode, defaultGraph } = DataFactory;
+const quad = DataFactory.quad.bind(DataFactory);
+const namedNode = DataFactory.namedNode.bind(DataFactory);
+const literal = DataFactory.literal.bind(DataFactory);
+const blankNode = DataFactory.blankNode.bind(DataFactory);
+const defaultGraph = DataFactory.defaultGraph.bind(DataFactory);
 
 // Variable mappings for the QPF endpoint.
 const VAR_POSITIONS = {

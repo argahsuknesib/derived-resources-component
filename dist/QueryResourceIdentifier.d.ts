@@ -11,3 +11,9 @@ export interface QueryResourceIdentifier extends ResourceIdentifier {
  * @param identifier
  */
 export declare function isQueryResourceIdentifier(identifier: ResourceIdentifier): identifier is QueryResourceIdentifier;
+/**
+ * Checks if the given value is a {@link ResourceIdentifier}.
+ *
+ * @param value
+ */
+export declare function isResourceIdentifier(value: unknown): value is ResourceIdentifier;

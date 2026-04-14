@@ -4,7 +4,6 @@ import { DERIVED_TYPES } from '../Vocabularies';
 import type { FilterExecutorInput } from './FilterExecutor';
 import { FilterExecutor } from './FilterExecutor';
 
-// TODO:
 export class LatestFilterExecutor extends FilterExecutor {
   public async canHandle({ filter }: FilterExecutorInput): Promise<void> {
     if (!filter.type.equals(DERIVED_TYPES.terms.String) || filter.data !== 'latest') {

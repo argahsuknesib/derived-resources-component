@@ -35,8 +35,9 @@ See 'Examples' below for a walkthrough of the demonstration.
 A GitHub Actions workflow is included at `.github/workflows/css8-node22-verify.yml`.
 For every push/PR it verifies:
 
-- TypeScript compilation (`npm run build:ts`)
-- Components metadata generation (`npm run build:components`)
+- Linting (`npm run lint`)
+- Unit and integration tests (`npm test -- --runInBand`)
+- Full build (`npm run build`), including TypeScript compilation and Components metadata generation
 - CSS8 config boot with:
   - `config/main.json`
   - `config/derived-auth.json`

@@ -23,6 +23,7 @@ import {
   duplicateRepresentation,
   representationToCached,
 } from './util/CacheUtil';
+import { isResourceIdentifier } from './QueryResourceIdentifier';
 
 export interface CachedResourceStoreArgs {
   source: ResourceStore;
@@ -162,6 +163,9 @@ export class CachedResourceStore extends PassthroughStore implements SingleThrea
    */
   protected invalidateCache(changeMap: ChangeMap): void {
     for (const identifier of changeMap.keys()) {
+      if (!isResourceIdentifier(identifier)) {
+        throw new TypeError('Unexpected change map key: expected ResourceIdentifier.');
+      }
       this.invalidateIdentifier(identifier);
       if (this.metadataStrategy.isAuxiliaryIdentifier(identifier)) {
         this.invalidateIdentifier(this.metadataStrategy.getSubjectIdentifier(identifier));
