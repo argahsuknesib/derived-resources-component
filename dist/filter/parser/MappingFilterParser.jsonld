@@ -23,7 +23,10 @@
       "comment": "Applies mapping values to a filter string in a {@link DerivationConfig}. Replaces `$key$` strings with the corresponding value in the mappings.",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T"
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [

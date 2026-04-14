@@ -1,4 +1,4 @@
-import type { ChangeMap, Conditions, IdentifierStrategy, Patch, Representation, ResourceIdentifier, ResourceStore } from '@solid/community-server';
+import type { ChangeMap, Conditions, IdentifierStrategy, Patch, Representation, RepresentationPreferences, ResourceIdentifier, ResourceStore } from '@solid/community-server';
 import { PassthroughStore } from '@solid/community-server';
 import type { DerivationManager } from './DerivationManager';
 /**
@@ -12,7 +12,7 @@ export declare class DerivedResourceStore extends PassthroughStore {
     protected readonly identifierStrategy: IdentifierStrategy;
     constructor(source: ResourceStore, manager: DerivationManager, identifierStrategy: IdentifierStrategy);
     hasResource(identifier: ResourceIdentifier): Promise<boolean>;
-    getRepresentation(identifier: ResourceIdentifier): Promise<Representation>;
+    getRepresentation(identifier: ResourceIdentifier, preferences?: RepresentationPreferences, conditions?: Conditions): Promise<Representation>;
     addResource(container: ResourceIdentifier, representation: Representation, conditions?: Conditions): Promise<ChangeMap>;
     setRepresentation(identifier: ResourceIdentifier, representation: Representation, conditions?: Conditions): Promise<ChangeMap>;
     modifyResource(identifier: ResourceIdentifier, patch: Patch, conditions?: Conditions): Promise<ChangeMap>;
@@ -21,6 +21,10 @@ export declare class DerivedResourceStore extends PassthroughStore {
      * Asserts the identifier does not correspond to a derived resource.
      */
     protected assertNotDerived(identifier: ResourceIdentifier): Promise<void>;
+    /**
+     * Derived resources should never be resolved for CSS internal state resources.
+     */
+    protected isInternalIdentifier(identifier: ResourceIdentifier): boolean;
     /**
      * Determines if the identifier corresponds to a derived resource.
      * `skipFirst` parameter will be passed to `getFirstExistingResource` call.

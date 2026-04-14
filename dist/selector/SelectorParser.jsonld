@@ -1,6 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/asynchronous-handlers/^1.0.0/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
   ],
   "@id": "npmd:@solidlab/derived-resources-component",
@@ -12,7 +13,7 @@
       "extends": [
         {
           "@type": "GenericComponentExtension",
-          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "component": "ah:dist/AsyncHandler.jsonld#AsyncHandler",
           "genericTypeInstances": [
             "derived:dist/DerivationConfig.jsonld#DerivationConfig",
             {

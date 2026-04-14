@@ -12,10 +12,11 @@ import {
 import { DataFactory } from 'n3';
 import type { DerivationManager } from '../../src/DerivationManager';
 import { DerivedResourceStore } from '../../src/DerivedResourceStore';
-import namedNode = DataFactory.namedNode;
+const { namedNode } = DataFactory;
 
 describe('DerivedResourceStore', (): void => {
   const identifier = { path: 'https://example.com/foo' };
+  const internalIdentifier = { path: 'https://example.com/.internal/foo' };
   const config = 'config';
   let representation: Representation;
   let derivedRepresentation: Representation;
@@ -84,6 +85,14 @@ describe('DerivedResourceStore', (): void => {
     expect(manager.deriveResource).toHaveBeenCalledTimes(0);
   });
 
+  it('getRepresentation bypasses derivation for internal resources.', async(): Promise<void> => {
+    const preferences = { type: { [INTERNAL_QUADS]: 1 }};
+    await expect(store.getRepresentation(internalIdentifier, preferences)).resolves.toBe(representation);
+    expect(source.getRepresentation).toHaveBeenLastCalledWith(internalIdentifier, preferences, undefined);
+    expect(manager.getDerivationConfig).toHaveBeenCalledTimes(0);
+    expect(manager.deriveResource).toHaveBeenCalledTimes(0);
+  });
+
   it('getRepresentation throws a 404 if the target does not exist and there is no config.', async(): Promise<void> => {
     manager.getDerivationConfig.mockResolvedValueOnce(undefined);
     source.getRepresentation.mockRejectedValueOnce(new NotFoundHttpError());
@@ -112,6 +121,12 @@ describe('DerivedResourceStore', (): void => {
     await expect(store.setRepresentation(identifier, new BasicRepresentation())).rejects.toThrow(error);
     await expect(store.modifyResource(identifier, new BasicRepresentation())).rejects.toThrow(error);
     await expect(store.deleteResource(identifier)).rejects.toThrow(error);
+  });
+
+  it('hasResource bypasses derivation for internal resources.', async(): Promise<void> => {
+    await expect(store.hasResource(internalIdentifier)).resolves.toBe(true);
+    expect(source.hasResource).toHaveBeenLastCalledWith(internalIdentifier);
+    expect(manager.getDerivationConfig).toHaveBeenCalledTimes(0);
   });
 
   it('calls the other functions if the target is not a derived resource.', async(): Promise<void> => {

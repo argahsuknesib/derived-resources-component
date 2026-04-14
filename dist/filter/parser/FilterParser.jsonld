@@ -1,7 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
-    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/asynchronous-handlers/^1.0.0/components/context.jsonld"
   ],
   "@id": "npmd:@solidlab/derived-resources-component",
   "components": [
@@ -12,7 +12,7 @@
       "extends": [
         {
           "@type": "GenericComponentExtension",
-          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "component": "ah:dist/AsyncHandler.jsonld#AsyncHandler",
           "genericTypeInstances": [
             "derived:dist/DerivationConfig.jsonld#DerivationConfig",
             {
@@ -31,7 +31,10 @@
       "comment": "Interprets raw filter input into a {@link Filter} object.",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser__generic_T"
+          "@id": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [],

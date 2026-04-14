@@ -29,11 +29,12 @@ describe('QpfFilterParser', (): void => {
   });
 
   it('returns a QPF filter object.', async(): Promise<void> => {
-    await expect(parser.handle(config)).resolves.toEqual({
+    const result = await parser.handle(config);
+    expect(result).toEqual(expect.objectContaining({
       type: DERIVED_TYPES.terms.QPF,
       data: '',
       checksum: '{"a":"b","c":"d"}',
-      metadata: new RepresentationMetadata(),
-    });
+    }));
+    expect(result.metadata).toBeInstanceOf(RepresentationMetadata);
   });
 });

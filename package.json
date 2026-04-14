@@ -57,7 +57,10 @@
     "componentsjs": "^6.4.0",
     "jest": "^29.7.0",
     "opinionated-eslint-config": "^0.1.0",
+    "rdf-dereference": "^5.0.0",
     "rdf-js": "^4.0.2",
+    "rdf-parse": "^5.0.0",
+    "rdf-serialize": "^5.1.0",
     "ts-jest": "^29.2.3"
   }
 }

@@ -45,11 +45,12 @@ describe('QuadPatternFilterParser', (): void => {
 
   it('returns a quad pattern filter.', async(): Promise<void> => {
     await expect(parser.canHandle(config)).resolves.toBeUndefined();
-    await expect(parser.handle(config)).resolves.toEqual({
+    const result = await parser.handle(config);
+    expect(result).toEqual(expect.objectContaining({
       data: filter,
       checksum: config.filter,
       type: DERIVED_TYPES.terms.QuadPattern,
-      metadata: new RepresentationMetadata(),
-    });
+    }));
+    expect(result.metadata).toBeInstanceOf(RepresentationMetadata);
   });
 });

@@ -1,6 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/asynchronous-handlers/^1.0.0/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
   ],
   "@graph": [
@@ -49,8 +50,7 @@
             }
           },
           {
-            "@type": "PermissionBasedAuthorizer",
-            "resourceSet": { "@id": "urn:solid-server:default:CachedResourceSet" }
+            "@type": "PermissionBasedAuthorizer"
           }
         ]
       }

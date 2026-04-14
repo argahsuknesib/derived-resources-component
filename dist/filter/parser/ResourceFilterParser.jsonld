@@ -24,7 +24,10 @@
       "comment": "Interprets the filter string from a {@link DerivationConfig} as the URL of a resource. The contents of that resource will then be passed along to the next parser. Only supports resources stored in the given {@link ResourceStore}.g",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T"
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [

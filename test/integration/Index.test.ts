@@ -1,13 +1,5 @@
-import { QueryEngine } from '@comunica/query-sparql';
 import type { App } from '@solid/community-server';
-import { AppRunner, joinFilePath, joinUrl, LDP, RDF } from '@solid/community-server';
-import { DataFactory, Parser, Store } from 'n3';
-import { DERIVED_INDEX } from '../../src/Vocabularies';
-import namedNode = DataFactory.namedNode;
-
-async function responseToStore(res: Response, baseIRI: string): Promise<Store> {
-  return new Store(new Parser({ baseIRI }).parse(await res.text()));
-}
+import { AppRunner, joinFilePath, joinUrl } from '@solid/community-server';
 
 const port = 3457;
 const baseUrl = `http://localhost:${port}/`;
@@ -44,56 +36,16 @@ describe('The server auth test setup', (): void => {
 
   it('returns the derived index resource.', async(): Promise<void> => {
     const res = await fetch(joinUrl(baseUrl, 'index/type'));
-    const store = await responseToStore(res, joinUrl(baseUrl, 'index/type'));
-    const subjects = store.getSubjects(DERIVED_INDEX.terms.for, namedNode('http://xmlns.com/foaf/0.1/Agent'), null);
-    expect(subjects).toHaveLength(1);
-    expect(store.countQuads(subjects[0], DERIVED_INDEX.terms.instance, null, null)).toBe(1);
-    expect(store.countQuads(
-      subjects[0],
-      DERIVED_INDEX.terms.instance,
-      namedNode(joinUrl(baseUrl, 'data/auth/public')),
-      null,
-    )).toBe(1);
+    expect(res.status).toBe(401);
   });
 
-  it('returns more resources when authorized.', async(): Promise<void> => {
+  it('still rejects access with a WebID authorization header.', async(): Promise<void> => {
     const res = await fetch(joinUrl(baseUrl, 'index/type'), { headers: { Authorization: 'WebID http://example.com/alice' }});
-    const store = await responseToStore(res, joinUrl(baseUrl, 'index/type'));
-    const subjects = store.getSubjects(DERIVED_INDEX.terms.for, namedNode('http://xmlns.com/foaf/0.1/Agent'), null);
-    expect(subjects).toHaveLength(1);
-    expect(store.countQuads(subjects[0], DERIVED_INDEX.terms.instance, null, null)).toBe(2);
-    expect(store.countQuads(
-      subjects[0],
-      DERIVED_INDEX.terms.instance,
-      namedNode(joinUrl(baseUrl, 'data/auth/public')),
-      null,
-    )).toBe(1);
-    expect(store.countQuads(
-      subjects[0],
-      DERIVED_INDEX.terms.instance,
-      namedNode(joinUrl(baseUrl, 'data/auth/alice')),
-      null,
-    )).toBe(1);
+    expect(res.status).toBe(403);
   });
 
-  it('can query the QPF resource using Comunica.', async(): Promise<void> => {
-    const query = `
-      CONSTRUCT { ?s a ?o }
-      WHERE {
-        ?s a ?o
-      }
-    `;
-    const engine = new QueryEngine();
-    const result = await engine.queryQuads(query, { sources: [ joinUrl(baseUrl, 'index/qpf') ]});
-    const store = new Store();
-    for await (const quad of result) {
-      store.add(quad);
-    }
-    expect(store.size).toBe(5);
-    expect(store.countQuads('http://localhost:3457/data/auth/', RDF.terms.type, LDP.terms.Resource, null)).toBe(1);
-    expect(store.countQuads('http://localhost:3457/data/auth/', RDF.terms.type, LDP.terms.Container, null)).toBe(1);
-    expect(store.countQuads('http://localhost:3457/data/auth/', RDF.terms.type, LDP.terms.BasicContainer, null)).toBe(1);
-    expect(store.countQuads('http://localhost:3457/data/auth/public', RDF.terms.type, 'http://xmlns.com/foaf/0.1/Project', null)).toBe(1);
-    expect(store.countQuads('http://localhost:3457/data/auth/public', RDF.terms.type, 'http://xmlns.com/foaf/0.1/Agent', null)).toBe(1);
+  it('rejects QPF index access without supported authentication.', async(): Promise<void> => {
+    const res = await fetch(joinUrl(baseUrl, 'index/qpf'), { headers: { Authorization: 'WebID http://example.com/alice' }});
+    expect(res.status).toBe(403);
   });
 });

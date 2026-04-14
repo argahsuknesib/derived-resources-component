@@ -78,6 +78,10 @@
           "memberFieldName": "assertNotDerived"
         },
         {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_isInternalIdentifier",
+          "memberFieldName": "isInternalIdentifier"
+        },
+        {
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_isDerivedResource",
           "memberFieldName": "isDerivedResource"
         },

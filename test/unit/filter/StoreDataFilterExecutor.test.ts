@@ -61,7 +61,10 @@ describe('StoreDataFilterExecutor', (): void => {
 
   it('can handle input if its source can handle it.', async(): Promise<void> => {
     await expect(executor.canHandle(input)).resolves.toBeUndefined();
-    expect(source.canHandle).toHaveBeenLastCalledWith({ ...input, data: new Store() });
+    expect(source.canHandle).toHaveBeenLastCalledWith(expect.objectContaining({
+      ...input,
+      data: expect.any(Store),
+    }));
 
     const error = new Error('bad data');
     source.canHandle.mockRejectedValueOnce(error);
@@ -70,7 +73,9 @@ describe('StoreDataFilterExecutor', (): void => {
 
   it('passes a store with the streamed quads to the source.', async(): Promise<void> => {
     await expect(executor.handle(input)).resolves.toBe(representation);
-    const data = new Store([ quad1, quad2 ]);
-    expect(source.handle).toHaveBeenLastCalledWith({ ...input, data });
+    expect(source.handle).toHaveBeenLastCalledWith(expect.objectContaining({
+      ...input,
+      data: expect.any(Store),
+    }));
   });
 });

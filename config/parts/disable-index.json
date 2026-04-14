@@ -5,8 +5,13 @@
   "@graph": [
     {
       "comment": "Disables returning an `index.html` when trying to access a container. This is necessary when you have templates like `/{var}`. We rewire the stack to bypass the default index store instead of redefining it.",
-      "@id": "urn:solid-server:default:ResourceStore_BinarySlice",
-      "source": { "@id": "urn:solid-server:default:ResourceStore_Locking" }
+      "@id": "urn:solid-server:derived:DisableIndexStoreOverride",
+      "@type": "Override",
+      "overrideInstance": { "@id": "urn:solid-server:default:ResourceStore_BinarySlice" },
+      "overrideParameters": {
+        "@type": "BinarySliceResourceStore",
+        "source": { "@id": "urn:solid-server:default:ResourceStore_Locking" }
+      }
     }
   ]
 }

@@ -4,6 +4,7 @@ import type {
   IdentifierStrategy,
   Patch,
   Representation,
+  RepresentationPreferences,
   ResourceIdentifier,
   ResourceStore,
 } from '@solid/community-server';
@@ -34,6 +35,9 @@ export class DerivedResourceStore extends PassthroughStore {
   }
 
   public async hasResource(identifier: ResourceIdentifier): Promise<boolean> {
+    if (this.isInternalIdentifier(identifier)) {
+      return this.source.hasResource(identifier);
+    }
     const exists = await this.source.hasResource(identifier);
     if (exists) {
       return exists;
@@ -41,7 +45,14 @@ export class DerivedResourceStore extends PassthroughStore {
     return this.isDerivedResource(identifier, true);
   }
 
-  public async getRepresentation(identifier: ResourceIdentifier): Promise<Representation> {
+  public async getRepresentation(
+    identifier: ResourceIdentifier,
+    preferences: RepresentationPreferences = {},
+    conditions?: Conditions,
+  ): Promise<Representation> {
+    if (this.isInternalIdentifier(identifier)) {
+      return this.source.getRepresentation(identifier, preferences, conditions);
+    }
     const firstResource = await this.getFirstExistingResource(identifier);
     this.logger.debug(`${firstResource.metadata.identifier.value
     } is the first resource that exists starting from ${identifier.path}`);
@@ -107,9 +118,19 @@ export class DerivedResourceStore extends PassthroughStore {
    * Asserts the identifier does not correspond to a derived resource.
    */
   protected async assertNotDerived(identifier: ResourceIdentifier): Promise<void> {
+    if (this.isInternalIdentifier(identifier)) {
+      return;
+    }
     if (await this.isDerivedResource(identifier)) {
       throw new MethodNotAllowedHttpError([ 'POST', 'PUT', 'PATCH', 'DELETE' ]);
     }
+  }
+
+  /**
+   * Derived resources should never be resolved for CSS internal state resources.
+   */
+  protected isInternalIdentifier(identifier: ResourceIdentifier): boolean {
+    return /\/\.internal(?:\/|$)/u.test(identifier.path);
   }
 
   /**

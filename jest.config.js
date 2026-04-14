@@ -11,6 +11,10 @@ module.exports = {
     'ts',
     'js',
   ],
+  moduleNameMapper: {
+    '^marked$': '<rootDir>/test/mocks/marked.js',
+    '^oidc-provider$': '<rootDir>/test/mocks/oidc-provider.js',
+  },
   testEnvironment: 'node',
   collectCoverage: true,
   coverageReporters: [ 'text', 'lcov' ],

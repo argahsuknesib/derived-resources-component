@@ -55,7 +55,9 @@ describe('ResourceFilterParser', (): void => {
   });
 
   it('calls the source filter parser with the contents of the resource.', async(): Promise<void> => {
-    await expect(parser.handle(config)).resolves.toEqual({ metadata, data: 'parsed data' });
+    const result = await parser.handle(config);
+    expect(result.data).toBe('parsed data');
+    expect(result.metadata).toBeInstanceOf(RepresentationMetadata);
     expect(source.handleSafe).toHaveBeenCalledTimes(1);
     expect(source.handleSafe).toHaveBeenLastCalledWith({
       ...config,

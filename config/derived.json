@@ -5,7 +5,6 @@
   ],
   "import": [
     "derived:config/parts/cache.json",
-    "derived:config/parts/disable-index.json",
     "derived:config/parts/filter.json",
     "derived:config/parts/manager.json",
     "derived:config/parts/query-string.json",

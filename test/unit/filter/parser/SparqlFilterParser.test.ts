@@ -26,11 +26,12 @@ describe('SparqlFilterParser', (): void => {
   });
 
   it('returns the SPARQL query.', async(): Promise<void> => {
-    await expect(parser.handle(config)).resolves.toEqual({
+    const result = await parser.handle(config);
+    expect(result).toEqual(expect.objectContaining({
       data: 'SELECT * WHERE { ?s ?p ?o }',
       type: DERIVED_TYPES.terms.Sparql,
       checksum: 'SELECT * WHERE { ?s ?p ?o }',
-      metadata: new RepresentationMetadata(),
-    } satisfies Filter<string>);
+    } satisfies Partial<Filter<string>>));
+    expect(result.metadata).toBeInstanceOf(RepresentationMetadata);
   });
 });

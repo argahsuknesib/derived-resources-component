@@ -18,13 +18,19 @@ class DerivedResourceStore extends community_server_1.PassthroughStore {
         this.identifierStrategy = identifierStrategy;
     }
     async hasResource(identifier) {
+        if (this.isInternalIdentifier(identifier)) {
+            return this.source.hasResource(identifier);
+        }
         const exists = await this.source.hasResource(identifier);
         if (exists) {
             return exists;
         }
         return this.isDerivedResource(identifier, true);
     }
-    async getRepresentation(identifier) {
+    async getRepresentation(identifier, preferences = {}, conditions) {
+        if (this.isInternalIdentifier(identifier)) {
+            return this.source.getRepresentation(identifier, preferences, conditions);
+        }
         const firstResource = await this.getFirstExistingResource(identifier);
         this.logger.debug(`${firstResource.metadata.identifier.value} is the first resource that exists starting from ${identifier.path}`);
         const identifierExists = firstResource.metadata.identifier.value === identifier.path;
@@ -67,9 +73,18 @@ class DerivedResourceStore extends community_server_1.PassthroughStore {
      * Asserts the identifier does not correspond to a derived resource.
      */
     async assertNotDerived(identifier) {
+        if (this.isInternalIdentifier(identifier)) {
+            return;
+        }
         if (await this.isDerivedResource(identifier)) {
             throw new community_server_1.MethodNotAllowedHttpError(['POST', 'PUT', 'PATCH', 'DELETE']);
         }
+    }
+    /**
+     * Derived resources should never be resolved for CSS internal state resources.
+     */
+    isInternalIdentifier(identifier) {
+        return /\/\.internal(?:\/|$)/u.test(identifier.path);
     }
     /**
      * Determines if the identifier corresponds to a derived resource.

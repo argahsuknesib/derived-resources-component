@@ -11,7 +11,10 @@
       "comment": "The result of parsing filter metadata.",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/Filter.jsonld#Filter__generic_T"
+          "@id": "derived:dist/filter/Filter.jsonld#Filter__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [],

@@ -1,6 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/asynchronous-handlers/^1.0.0/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
   ],
   "@id": "npmd:@solidlab/derived-resources-component",
@@ -12,7 +13,7 @@
       "extends": [
         {
           "@type": "GenericComponentExtension",
-          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "component": "ah:dist/AsyncHandler.jsonld#AsyncHandler",
           "genericTypeInstances": [
             {
               "@type": "ParameterRangeGenericComponent",
@@ -31,7 +32,10 @@
       "comment": "Similar to a {@link FilterExecutor} but takes an N3.js store as input instead.",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor__generic_T"
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [],
@@ -43,7 +47,10 @@
       "requireElement": "N3FilterExecutorInput",
       "genericTypeParameters": [
         {
-          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__generic_T"
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__generic_T",
+          "default": {
+            "@type": "ParameterRangeWildcard"
+          }
         }
       ],
       "parameters": [],

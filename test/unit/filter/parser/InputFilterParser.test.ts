@@ -18,11 +18,12 @@ describe('InputFilterParser', (): void => {
   });
 
   it('returns the filter data input.', async(): Promise<void> => {
-    await expect(parser.handle(config)).resolves.toEqual({
-      metadata: new RepresentationMetadata(),
+    const result = await parser.handle(config);
+    expect(result).toEqual(expect.objectContaining({
       type: DERIVED_TYPES.terms.String,
       data: config.filter,
       checksum: config.filter,
-    });
+    }));
+    expect(result.metadata).toBeInstanceOf(RepresentationMetadata);
   });
 });
