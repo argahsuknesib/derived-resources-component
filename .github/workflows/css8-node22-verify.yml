@@ -27,9 +27,6 @@ jobs:
       - name: TypeScript Build
         run: npm run build:ts
 
-      - name: Components Metadata Build
-        run: npm run build:components
-
       - name: CSS8 Config Boot Check
         shell: bash
         run: |
