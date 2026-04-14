@@ -1,0 +1,46 @@
+name: CSS8 Node22 Verify
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: TypeScript Build
+        run: npm run build:ts
+
+      - name: Components Metadata Build
+        run: npm run build:components
+
+      - name: CSS8 Config Boot Check
+        shell: bash
+        run: |
+          set -euo pipefail
+          # We only need to verify boot/config loading, not keep the server alive.
+          # timeout returns 124 when the server is healthy and still running at cutoff.
+          timeout 25s npx community-solid-server \
+            -c config/main.json \
+            config/derived-auth.json \
+            config/example.json \
+            -m . || status=$?
+          if [[ "${status:-0}" -ne 0 && "${status:-0}" -ne 124 ]]; then
+            exit "${status}"
+          fi

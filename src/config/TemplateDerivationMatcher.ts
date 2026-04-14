@@ -2,8 +2,8 @@ import type { BlankNode, NamedNode, Quad, Term } from '@rdfjs/types';
 import type {
   ResourceIdentifier,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
-  getLoggerFor,
   InternalServerError,
   NotImplementedHttpError,
   RepresentationMetadata,

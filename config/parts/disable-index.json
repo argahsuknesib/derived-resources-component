@@ -1,13 +1,12 @@
 {
   "@context": [
-    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^7.0.0/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
   ],
   "@graph": [
     {
-      "comment": "Disables returning an `index.html` when trying to access a container. This is necessary when you have templates like `/{var}`.",
-      "@id": "urn:solid-server:default:ResourceStore_Index",
-      "@type": "IndexRepresentationStore",
-      "mediaRange": ""
+      "comment": "Disables returning an `index.html` when trying to access a container. This is necessary when you have templates like `/{var}`. We rewire the stack to bypass the default index store instead of redefining it.",
+      "@id": "urn:solid-server:default:ResourceStore_BinarySlice",
+      "source": { "@id": "urn:solid-server:default:ResourceStore_Locking" }
     }
   ]
 }

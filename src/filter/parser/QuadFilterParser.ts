@@ -1,10 +1,10 @@
 import {
   createErrorMessage,
-  getLoggerFor,
   InternalServerError,
   NotImplementedHttpError,
   RepresentationMetadata,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import { Parser, Store } from 'n3';
 import type { DerivationConfig } from '../../DerivationConfig';
 import { DERIVED_TYPES } from '../../Vocabularies';

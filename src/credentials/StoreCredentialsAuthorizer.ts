@@ -1,4 +1,4 @@
-import type { AuthorizerInput } from '@solid/community-server';
+import type { AuthorizerInput, ResourceIdentifier } from '@solid/community-server';
 import { Authorizer } from '@solid/community-server';
 import type { CredentialsStorage } from './CredentialsStorage';
 
@@ -15,7 +15,7 @@ export class StoreCredentialsAuthorizer extends Authorizer {
   }
 
   public async handle(input: AuthorizerInput): Promise<void> {
-    const requested = new Set(input.requestedModes.keys());
+    const requested = new Set<ResourceIdentifier>(input.requestedModes.keys());
     for (const identifier of requested) {
       await this.storage.set(identifier, input.credentials);
     }

@@ -7,6 +7,21 @@ Adds support for derived resources to a
 
 ## Install
 
+This project now targets Community Solid Server v8 and requires **Node.js 22+**.
+If you use `nvm`, run:
+
+```bash
+nvm use
+```
+
+or:
+
+```bash
+nvm install 22 && nvm use 22
+```
+
+Then install and build:
+
 ```
 npm install
 npm run build
@@ -14,6 +29,18 @@ npm run build
 
 Run `npm run start:example` to have a CSS instance with the new components implementing the template `templates/root/base`.
 See 'Examples' below for a walkthrough of the demonstration.
+
+## CI verification (Node 22)
+
+A GitHub Actions workflow is included at `.github/workflows/css8-node22-verify.yml`.
+For every push/PR it verifies:
+
+- TypeScript compilation (`npm run build:ts`)
+- Components metadata generation (`npm run build:components`)
+- CSS8 config boot with:
+  - `config/main.json`
+  - `config/derived-auth.json`
+  - `config/example.json`
 
 ## What are derived resources?
 

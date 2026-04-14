@@ -4,7 +4,6 @@ import type {
   ResourceIdentifier,
 } from '@solid/community-server';
 import {
-  AccessMode,
   IdentifierSetMultiMap,
   InternalServerError,
 } from '@solid/community-server';
@@ -57,9 +56,9 @@ export class AuthorizedSelectorParser extends SelectorParser implements ParamSet
     }
 
     const credentials = await this.storage.get(config.identifier) ?? {};
-    const requestedModes: AccessMap = new IdentifierSetMultiMap<AccessMode>();
+    const requestedModes: AccessMap = new IdentifierSetMultiMap<string>();
     for (const identifier of identifiers) {
-      requestedModes.set(identifier, AccessMode.read);
+      requestedModes.set(identifier, 'read');
     }
 
     const permissions = await this.permissionReader.handleSafe({ credentials, requestedModes });

@@ -3,10 +3,10 @@ import { PassThrough } from 'node:stream';
 import type {
   Representation,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
   BasicRepresentation,
   createErrorMessage,
-  getLoggerFor,
   guardedStreamFrom,
   InternalServerError,
   pipeSafely,

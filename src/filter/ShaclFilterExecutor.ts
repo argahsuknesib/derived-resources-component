@@ -1,9 +1,9 @@
 import { Readable } from 'node:stream';
 import type { Quad, Term } from '@rdfjs/types';
 import type { Representation } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
   BasicRepresentation,
-  getLoggerFor,
   INTERNAL_QUADS,
   NotImplementedHttpError,
   RDF,

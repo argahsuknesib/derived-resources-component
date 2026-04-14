@@ -9,8 +9,8 @@ import type {
   ResourceStore,
   SingleThreaded,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
-  getLoggerFor,
   PassthroughStore,
 } from '@solid/community-server';
 import { LRUCache } from 'lru-cache';

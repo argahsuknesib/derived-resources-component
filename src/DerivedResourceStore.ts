@@ -7,9 +7,9 @@ import type {
   ResourceIdentifier,
   ResourceStore,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
   DC,
-  getLoggerFor,
   MethodNotAllowedHttpError,
   NotFoundHttpError,
   PassthroughStore,

@@ -5,10 +5,10 @@ import type { Quad } from '@rdfjs/types';
 import type {
   Representation,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import {
   BasicRepresentation,
   createErrorMessage,
-  getLoggerFor,
   INTERNAL_QUADS,
   InternalServerError,
   NotImplementedHttpError,
