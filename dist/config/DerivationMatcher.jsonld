@@ -1,0 +1,48 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcher",
+      "@type": "AbstractClass",
+      "requireElement": "DerivationMatcher",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "genericTypeInstances": [
+            "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput",
+            "derived:dist/DerivationConfig.jsonld#DerivationConfig"
+          ]
+        }
+      ],
+      "comment": "Extract a matching config from metadata, if one can be found.",
+      "parameters": [],
+      "constructorArguments": []
+    },
+    {
+      "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput",
+      "@type": "AbstractClass",
+      "requireElement": "DerivationMatcherInput",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput__member_subject",
+          "memberFieldName": "subject"
+        },
+        {
+          "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput__member_identifier",
+          "memberFieldName": "identifier"
+        },
+        {
+          "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput__member_metadata",
+          "memberFieldName": "metadata"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

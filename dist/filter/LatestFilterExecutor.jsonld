@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/LatestFilterExecutor.jsonld#LatestFilterExecutor",
+      "@type": "Class",
+      "requireElement": "LatestFilterExecutor",
+      "extends": [
+        "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor"
+      ],
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/LatestFilterExecutor.jsonld#LatestFilterExecutor__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/filter/LatestFilterExecutor.jsonld#LatestFilterExecutor__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

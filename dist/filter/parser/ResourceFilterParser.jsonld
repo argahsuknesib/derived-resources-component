@@ -1,0 +1,104 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser",
+      "@type": "Class",
+      "requireElement": "ResourceFilterParser",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+          "genericTypeInstances": [
+            {
+              "@type": "ParameterRangeGenericTypeReference",
+              "parameterRangeGenericType": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T"
+            }
+          ]
+        }
+      ],
+      "comment": "Interprets the filter string from a {@link DerivationConfig} as the URL of a resource. The contents of that resource will then be passed along to the next parser. Only supports resources stored in the given {@link ResourceStore}.g",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T"
+        }
+      ],
+      "parameters": [
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_source",
+          "range": {
+            "@type": "ParameterRangeGenericComponent",
+            "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+            "genericTypeInstances": [
+              {
+                "@type": "ParameterRangeGenericTypeReference",
+                "parameterRangeGenericType": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_identifierStrategy",
+          "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_source",
+          "memberFieldName": "source",
+          "range": {
+            "@type": "ParameterRangeGenericComponent",
+            "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+            "genericTypeInstances": [
+              {
+                "@type": "ParameterRangeGenericTypeReference",
+                "parameterRangeGenericType": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__generic_T"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_store",
+          "memberFieldName": "store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_identifierStrategy",
+          "memberFieldName": "identifierStrategy",
+          "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_source"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_store"
+        },
+        {
+          "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_identifierStrategy"
+        }
+      ]
+    }
+  ]
+}

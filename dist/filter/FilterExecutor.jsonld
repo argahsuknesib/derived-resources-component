@@ -1,0 +1,67 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor",
+      "@type": "AbstractClass",
+      "requireElement": "FilterExecutor",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "genericTypeInstances": [
+            {
+              "@type": "ParameterRangeGenericComponent",
+              "component": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput",
+              "genericTypeInstances": [
+                {
+                  "@type": "ParameterRangeGenericTypeReference",
+                  "parameterRangeGenericType": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor__generic_T"
+                }
+              ]
+            },
+            "css:dist/http/representation/Representation.jsonld#Representation"
+          ]
+        }
+      ],
+      "comment": "Applies a {@link Filter} object to a dataset to generate a derived resource representation.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor__generic_T"
+        }
+      ],
+      "parameters": [],
+      "constructorArguments": []
+    },
+    {
+      "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput",
+      "@type": "AbstractClass",
+      "requireElement": "FilterExecutorInput",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput__generic_T"
+        }
+      ],
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput__member_config",
+          "memberFieldName": "config"
+        },
+        {
+          "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput__member_filter",
+          "memberFieldName": "filter"
+        },
+        {
+          "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput__member_representations",
+          "memberFieldName": "representations"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

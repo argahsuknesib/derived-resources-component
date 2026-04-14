@@ -1,0 +1,38 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig",
+      "@type": "AbstractClass",
+      "requireElement": "DerivationConfig",
+      "comment": "Describes all the necessary information to derive a resource.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig__member_identifier",
+          "memberFieldName": "identifier"
+        },
+        {
+          "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig__member_mappings",
+          "memberFieldName": "mappings"
+        },
+        {
+          "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig__member_selectors",
+          "memberFieldName": "selectors"
+        },
+        {
+          "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig__member_filter",
+          "memberFieldName": "filter"
+        },
+        {
+          "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig__member_metadata",
+          "memberFieldName": "metadata"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

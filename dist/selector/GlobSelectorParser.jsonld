@@ -1,0 +1,92 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser",
+      "@type": "Class",
+      "requireElement": "GlobSelectorParser",
+      "extends": [
+        "derived:dist/selector/SelectorParser.jsonld#SelectorParser"
+      ],
+      "comment": "Interprets selectors as resource identifiers. The selector can contain glob patterns `*` or `**`. How these are interpreted is based on https://www.digitalocean.com/community/tools/glob.",
+      "parameters": [
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser_store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_store",
+          "memberFieldName": "store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handle",
+          "memberFieldName": "handle"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handleSelector",
+          "memberFieldName": "handleSelector"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handleInternalGlob",
+          "memberFieldName": "handleInternalGlob"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handleDouble",
+          "memberFieldName": "handleDouble"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handleSingle",
+          "memberFieldName": "handleSingle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser_store"
+        }
+      ]
+    },
+    {
+      "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters",
+      "@type": "AbstractClass",
+      "requireElement": "GlobParameters",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters__member_glob",
+          "memberFieldName": "glob"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters__member_head",
+          "memberFieldName": "head"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters__member_tail",
+          "memberFieldName": "tail"
+        },
+        {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters__member_childPaths",
+          "memberFieldName": "childPaths"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

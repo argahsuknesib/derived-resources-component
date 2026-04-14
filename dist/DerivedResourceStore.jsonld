@@ -1,0 +1,106 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore",
+      "@type": "Class",
+      "requireElement": "DerivedResourceStore",
+      "extends": [
+        "css:dist/storage/PassthroughStore.jsonld#PassthroughStore"
+      ],
+      "comment": "A {@link ResourceStore} which adds support for derived resources using a {@link DerivationManager}. Assumes preferences will be handled by a previous store in the chain. Prevents writing to a resource if it is a derived resource.",
+      "parameters": [
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_manager",
+          "range": "derived:dist/DerivationManager.jsonld#DerivationManager"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_source",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy",
+          "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_manager",
+          "memberFieldName": "manager",
+          "range": "derived:dist/DerivationManager.jsonld#DerivationManager"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_identifierStrategy",
+          "memberFieldName": "identifierStrategy",
+          "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_hasResource",
+          "memberFieldName": "hasResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_getRepresentation",
+          "memberFieldName": "getRepresentation"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_addResource",
+          "memberFieldName": "addResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_setRepresentation",
+          "memberFieldName": "setRepresentation"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_modifyResource",
+          "memberFieldName": "modifyResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_deleteResource",
+          "memberFieldName": "deleteResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_assertNotDerived",
+          "memberFieldName": "assertNotDerived"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_isDerivedResource",
+          "memberFieldName": "isDerivedResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_getFirstExistingResource",
+          "memberFieldName": "getFirstExistingResource"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_closeDataStream",
+          "memberFieldName": "closeDataStream"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_source"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_manager"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy"
+        }
+      ]
+    }
+  ]
+}

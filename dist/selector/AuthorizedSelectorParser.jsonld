@@ -1,0 +1,88 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser",
+      "@type": "Class",
+      "requireElement": "AuthorizedSelectorParser",
+      "extends": [
+        "derived:dist/selector/SelectorParser.jsonld#SelectorParser",
+        {
+          "@type": "GenericComponentExtension",
+          "component": "derived:dist/init/ParamSetter.jsonld#ParamSetter",
+          "genericTypeInstances": [
+            "css:dist/authorization/PermissionReader.jsonld#PermissionReader"
+          ]
+        }
+      ],
+      "comment": "A {@SelectorParser} that only returns identifiers from its source where the client has read access on. To determine the credentials, a {@link CredentialsStorage} is used. To prevent dependency loop issues when constructing classes, this class is also a {@link ParamSetter} for its {@link PermissionReader} parameter.  This removing of identifiers is only done if the {@link DerivationConfig} contains the `derived:ReadableSources` feature.",
+      "parameters": [
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_source",
+          "range": "derived:dist/selector/SelectorParser.jsonld#SelectorParser"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_storage",
+          "range": "css:dist/storage/keyvalue/KeyValueStorage.jsonld#KeyValueStorage"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_source",
+          "memberFieldName": "source",
+          "range": "derived:dist/selector/SelectorParser.jsonld#SelectorParser"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_storage",
+          "memberFieldName": "storage",
+          "range": "css:dist/storage/keyvalue/KeyValueStorage.jsonld#KeyValueStorage"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_internalPermissionReader",
+          "memberFieldName": "internalPermissionReader",
+          "range": {
+            "@type": "ParameterRangeUnion",
+            "parameterRangeElements": [
+              "css:dist/authorization/PermissionReader.jsonld#PermissionReader",
+              {
+                "@type": "ParameterRangeUndefined"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_setParam",
+          "memberFieldName": "setParam"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_permissionReader",
+          "memberFieldName": "permissionReader"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_source"
+        },
+        {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_storage"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager",
+      "@type": "Class",
+      "requireElement": "BaseDerivationManager",
+      "extends": [
+        "derived:dist/DerivationManager.jsonld#DerivationManager"
+      ],
+      "comment": "Derives resource information with the use of several helper classes. The {@link DerivationMatcher} determines the metadata that corresponds to the incoming identifier, the {@link SelectorHandler} determines the input sources, and the {@link FilterHandler} filters the relevant data from the input sources.",
+      "parameters": [
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_derivationMatcher",
+          "range": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcher"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_selectorHandler",
+          "range": "derived:dist/selector/SelectorHandler.jsonld#SelectorHandler"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_filterHandler",
+          "range": "derived:dist/filter/FilterHandler.jsonld#FilterHandler"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_derivationMatcher",
+          "memberFieldName": "derivationMatcher",
+          "range": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcher"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_selectorHandler",
+          "memberFieldName": "selectorHandler",
+          "range": "derived:dist/selector/SelectorHandler.jsonld#SelectorHandler"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_filterHandler",
+          "memberFieldName": "filterHandler",
+          "range": "derived:dist/filter/FilterHandler.jsonld#FilterHandler"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_getDerivationConfig",
+          "memberFieldName": "getDerivationConfig"
+        },
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager__member_deriveResource",
+          "memberFieldName": "deriveResource"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args__constructorArgument",
+          "fields": [
+            {
+              "keyRaw": "derivationMatcher",
+              "value": {
+                "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_derivationMatcher"
+              }
+            },
+            {
+              "keyRaw": "selectorHandler",
+              "value": {
+                "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_selectorHandler"
+              }
+            },
+            {
+              "keyRaw": "filterHandler",
+              "value": {
+                "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_filterHandler"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser",
+      "@type": "Class",
+      "requireElement": "SparqlFilterParser",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+          "genericTypeInstances": [
+            "xsd:string"
+          ]
+        }
+      ],
+      "comment": "Validates whether the filter string is a valid SPARQL query.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser__member_parser",
+          "memberFieldName": "parser",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

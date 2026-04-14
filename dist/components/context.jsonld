@@ -1,0 +1,424 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^5.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "derived": "npmd:@solidlab/derived-resources-component/^1.0.0/",
+      "DerivationMatcher": {
+        "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcher",
+        "@prefix": true,
+        "@context": {}
+      },
+      "DerivationMatcherInput": {
+        "@id": "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcherInput",
+        "@prefix": true,
+        "@context": {}
+      },
+      "PresetDerivationMatcher": {
+        "@id": "derived:dist/config/PresetDerivationMatcher.jsonld#PresetDerivationMatcher",
+        "@prefix": true,
+        "@context": {
+          "source": {
+            "@id": "derived:dist/config/PresetDerivationMatcher.jsonld#PresetDerivationMatcher_source"
+          }
+        }
+      },
+      "TemplateDerivationMatcher": {
+        "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher",
+        "@prefix": true,
+        "@context": {}
+      },
+      "StoreCredentialsAuthorizer": {
+        "@id": "derived:dist/credentials/StoreCredentialsAuthorizer.jsonld#StoreCredentialsAuthorizer",
+        "@prefix": true,
+        "@context": {
+          "storage": {
+            "@id": "derived:dist/credentials/StoreCredentialsAuthorizer.jsonld#StoreCredentialsAuthorizer_storage"
+          }
+        }
+      },
+      "WeakStorage": {
+        "@id": "derived:dist/credentials/WeakStorage.jsonld#WeakStorage",
+        "@prefix": true,
+        "@context": {}
+      },
+      "BaseQuadPatternExecutor": {
+        "@id": "derived:dist/filter/idx/BaseQuadPatternExecutor.jsonld#BaseQuadPatternExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "CachedQuadPatternExecutor": {
+        "@id": "derived:dist/filter/idx/CachedQuadPatternExecutor.jsonld#CachedQuadPatternExecutor",
+        "@prefix": true,
+        "@context": {
+          "cacheSettings_max": {
+            "@id": "derived:dist/filter/idx/CachedQuadPatternExecutor.jsonld#CachedQuadPatternExecutor_cacheSettings_max"
+          },
+          "source": {
+            "@id": "derived:dist/filter/idx/CachedQuadPatternExecutor.jsonld#CachedQuadPatternExecutor_source"
+          },
+          "cacheSettings_maxSize": {
+            "@id": "derived:dist/filter/idx/CachedQuadPatternExecutor.jsonld#CachedQuadPatternExecutor_cacheSettings_maxSize"
+          }
+        }
+      },
+      "IndexFilterExecutor": {
+        "@id": "derived:dist/filter/idx/IndexFilterExecutor.jsonld#IndexFilterExecutor",
+        "@prefix": true,
+        "@context": {
+          "quadPatternExecutor": {
+            "@id": "derived:dist/filter/idx/IndexFilterExecutor.jsonld#IndexFilterExecutor_quadPatternExecutor"
+          }
+        }
+      },
+      "QpfFilterExecutor": {
+        "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor",
+        "@prefix": true,
+        "@context": {
+          "quadLimit": {
+            "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadLimit"
+          },
+          "quadFilterParser": {
+            "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadFilterParser"
+          }
+        }
+      },
+      "QuadPatternExecutor": {
+        "@id": "derived:dist/filter/idx/QuadPatternExecutor.jsonld#QuadPatternExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "QuadPatternExecutorArgs": {
+        "@id": "derived:dist/filter/idx/QuadPatternExecutor.jsonld#QuadPatternExecutorArgs",
+        "@prefix": true,
+        "@context": {}
+      },
+      "FilterParser": {
+        "@id": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "InputFilterParser": {
+        "@id": "derived:dist/filter/parser/InputFilterParser.jsonld#InputFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "MappingFilterParser": {
+        "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser",
+        "@prefix": true,
+        "@context": {
+          "source": {
+            "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser_source"
+          }
+        }
+      },
+      "QpfFilterParser": {
+        "@id": "derived:dist/filter/parser/QpfFilterParser.jsonld#QpfFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "QuadFilterParser": {
+        "@id": "derived:dist/filter/parser/QuadFilterParser.jsonld#QuadFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "QuadPatternFilterParser": {
+        "@id": "derived:dist/filter/parser/QuadPatternFilterParser.jsonld#QuadPatternFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "ResourceFilterParser": {
+        "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser",
+        "@prefix": true,
+        "@context": {
+          "source": {
+            "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_source"
+          },
+          "store": {
+            "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_store"
+          },
+          "identifierStrategy": {
+            "@id": "derived:dist/filter/parser/ResourceFilterParser.jsonld#ResourceFilterParser_identifierStrategy"
+          }
+        }
+      },
+      "ShaclFilterParser": {
+        "@id": "derived:dist/filter/parser/ShaclFilterParser.jsonld#ShaclFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "SparqlFilterParser": {
+        "@id": "derived:dist/filter/parser/SparqlFilterParser.jsonld#SparqlFilterParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "BaseFilterHandler": {
+        "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler",
+        "@prefix": true,
+        "@context": {
+          "parser": {
+            "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_parser"
+          },
+          "executor": {
+            "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_executor"
+          }
+        }
+      },
+      "CachedFilterExecutor": {
+        "@id": "derived:dist/filter/CachedFilterExecutor.jsonld#CachedFilterExecutor",
+        "@prefix": true,
+        "@context": {
+          "cacheSettings_max": {
+            "@id": "derived:dist/filter/CachedFilterExecutor.jsonld#CachedFilterExecutor_cacheSettings_max"
+          },
+          "source": {
+            "@id": "derived:dist/filter/CachedFilterExecutor.jsonld#CachedFilterExecutor_source"
+          },
+          "cacheSettings_maxSize": {
+            "@id": "derived:dist/filter/CachedFilterExecutor.jsonld#CachedFilterExecutor_cacheSettings_maxSize"
+          }
+        }
+      },
+      "Filter": {
+        "@id": "derived:dist/filter/Filter.jsonld#Filter",
+        "@prefix": true,
+        "@context": {}
+      },
+      "FilterExecutor": {
+        "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "FilterExecutorInput": {
+        "@id": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutorInput",
+        "@prefix": true,
+        "@context": {}
+      },
+      "FilterHandler": {
+        "@id": "derived:dist/filter/FilterHandler.jsonld#FilterHandler",
+        "@prefix": true,
+        "@context": {}
+      },
+      "FilterHandlerInput": {
+        "@id": "derived:dist/filter/FilterHandler.jsonld#FilterHandlerInput",
+        "@prefix": true,
+        "@context": {}
+      },
+      "LatestFilterExecutor": {
+        "@id": "derived:dist/filter/LatestFilterExecutor.jsonld#LatestFilterExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "N3FilterExecutor": {
+        "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "N3FilterExecutorInput": {
+        "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput",
+        "@prefix": true,
+        "@context": {}
+      },
+      "ShaclFilterExecutor": {
+        "@id": "derived:dist/filter/ShaclFilterExecutor.jsonld#ShaclFilterExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "PredicatePath": {
+        "@id": "derived:dist/filter/ShaclFilterExecutor.jsonld#PredicatePath",
+        "@prefix": true,
+        "@context": {}
+      },
+      "SparqlFilterExecutor": {
+        "@id": "derived:dist/filter/SparqlFilterExecutor.jsonld#SparqlFilterExecutor",
+        "@prefix": true,
+        "@context": {}
+      },
+      "StoreDataFilterExecutor": {
+        "@id": "derived:dist/filter/StoreDataFilterExecutor.jsonld#StoreDataFilterExecutor",
+        "@prefix": true,
+        "@context": {
+          "source": {
+            "@id": "derived:dist/filter/StoreDataFilterExecutor.jsonld#StoreDataFilterExecutor_source"
+          }
+        }
+      },
+      "ParamInitializer": {
+        "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer",
+        "@prefix": true,
+        "@context": {
+          "param": {
+            "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_param"
+          },
+          "paramSetter": {
+            "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_paramSetter"
+          },
+          "etter": {
+            "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_paramSetter"
+          }
+        }
+      },
+      "ParamSetter": {
+        "@id": "derived:dist/init/ParamSetter.jsonld#ParamSetter",
+        "@prefix": true,
+        "@context": {}
+      },
+      "AuthorizedSelectorParser": {
+        "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser",
+        "@prefix": true,
+        "@context": {
+          "source": {
+            "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_source"
+          },
+          "storage": {
+            "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser_storage"
+          }
+        }
+      },
+      "BaseSelectorHandler": {
+        "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler",
+        "@prefix": true,
+        "@context": {
+          "parser": {
+            "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_parser"
+          },
+          "store": {
+            "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_store"
+          }
+        }
+      },
+      "GlobSelectorParser": {
+        "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser",
+        "@prefix": true,
+        "@context": {
+          "store": {
+            "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser_store"
+          }
+        }
+      },
+      "GlobParameters": {
+        "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobParameters",
+        "@prefix": true,
+        "@context": {}
+      },
+      "SelectorHandler": {
+        "@id": "derived:dist/selector/SelectorHandler.jsonld#SelectorHandler",
+        "@prefix": true,
+        "@context": {}
+      },
+      "SelectorParser": {
+        "@id": "derived:dist/selector/SelectorParser.jsonld#SelectorParser",
+        "@prefix": true,
+        "@context": {}
+      },
+      "CachedRepresentation": {
+        "@id": "derived:dist/util/CacheUtil.jsonld#CachedRepresentation",
+        "@prefix": true,
+        "@context": {}
+      },
+      "BaseDerivationManager": {
+        "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager",
+        "@prefix": true,
+        "@context": {
+          "args_derivationMatcher": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_derivationMatcher"
+          },
+          "args_selectorHandler": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_selectorHandler"
+          },
+          "args_filterHandler": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_filterHandler"
+          },
+          "derivationMatcher": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_derivationMatcher"
+          },
+          "selectorHandler": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_selectorHandler"
+          },
+          "filterHandler": {
+            "@id": "derived:dist/BaseDerivationManager.jsonld#BaseDerivationManager_args_filterHandler"
+          }
+        }
+      },
+      "CachedResourceStore": {
+        "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore",
+        "@prefix": true,
+        "@context": {
+          "args_source": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_source"
+          },
+          "args_metadataStrategy": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_metadataStrategy"
+          },
+          "args_cacheSettings_max": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_max"
+          },
+          "args_cacheSettings_maxSize": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_maxSize"
+          },
+          "source": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_source"
+          },
+          "metadataStrategy": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_metadataStrategy"
+          },
+          "cacheSettings_max": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_max"
+          },
+          "cacheSettings_maxSize": {
+            "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_maxSize"
+          }
+        }
+      },
+      "CachedResourceStoreArgs": {
+        "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStoreArgs",
+        "@prefix": true,
+        "@context": {}
+      },
+      "CacheEntry": {
+        "@id": "derived:dist/CachedResourceStore.jsonld#CacheEntry",
+        "@prefix": true,
+        "@context": {}
+      },
+      "DerivationConfig": {
+        "@id": "derived:dist/DerivationConfig.jsonld#DerivationConfig",
+        "@prefix": true,
+        "@context": {}
+      },
+      "DerivationManager": {
+        "@id": "derived:dist/DerivationManager.jsonld#DerivationManager",
+        "@prefix": true,
+        "@context": {}
+      },
+      "DerivedResourceStore": {
+        "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore",
+        "@prefix": true,
+        "@context": {
+          "manager": {
+            "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_manager"
+          },
+          "source": {
+            "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_source"
+          },
+          "identifierStrategy": {
+            "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy"
+          }
+        }
+      },
+      "QueryResourceIdentifier": {
+        "@id": "derived:dist/QueryResourceIdentifier.jsonld#QueryResourceIdentifier",
+        "@prefix": true,
+        "@context": {}
+      },
+      "QueryTargetExtractor": {
+        "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor",
+        "@prefix": true,
+        "@context": {
+          "targetExtractor": {
+            "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor_targetExtractor"
+          }
+        }
+      }
+    }
+  ]
+}

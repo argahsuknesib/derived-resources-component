@@ -1,0 +1,48 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor",
+      "@type": "Class",
+      "requireElement": "QueryTargetExtractor",
+      "extends": [
+        "css:dist/http/input/identifier/TargetExtractor.jsonld#TargetExtractor"
+      ],
+      "comment": "Uses a different {@link TargetExtractor} to generate a {@link ResourceIdentifier}, after which it parses the query parameters and adds those as well.",
+      "parameters": [
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor_targetExtractor",
+          "range": "css:dist/http/input/identifier/TargetExtractor.jsonld#TargetExtractor"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor__member_targetExtractor",
+          "memberFieldName": "targetExtractor",
+          "range": "css:dist/http/input/identifier/TargetExtractor.jsonld#TargetExtractor"
+        },
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/QueryTargetExtractor.jsonld#QueryTargetExtractor_targetExtractor"
+        }
+      ]
+    }
+  ]
+}

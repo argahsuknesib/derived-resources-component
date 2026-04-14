@@ -1,0 +1,67 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor",
+      "@type": "AbstractClass",
+      "requireElement": "N3FilterExecutor",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "genericTypeInstances": [
+            {
+              "@type": "ParameterRangeGenericComponent",
+              "component": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput",
+              "genericTypeInstances": [
+                {
+                  "@type": "ParameterRangeGenericTypeReference",
+                  "parameterRangeGenericType": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor__generic_T"
+                }
+              ]
+            },
+            "css:dist/http/representation/Representation.jsonld#Representation"
+          ]
+        }
+      ],
+      "comment": "Similar to a {@link FilterExecutor} but takes an N3.js store as input instead.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutor__generic_T"
+        }
+      ],
+      "parameters": [],
+      "constructorArguments": []
+    },
+    {
+      "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput",
+      "@type": "AbstractClass",
+      "requireElement": "N3FilterExecutorInput",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__generic_T"
+        }
+      ],
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__member_config",
+          "memberFieldName": "config"
+        },
+        {
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__member_filter",
+          "memberFieldName": "filter"
+        },
+        {
+          "@id": "derived:dist/filter/N3FilterExecutor.jsonld#N3FilterExecutorInput__member_data",
+          "memberFieldName": "data"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

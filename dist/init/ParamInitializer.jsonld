@@ -1,0 +1,88 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer",
+      "@type": "Class",
+      "requireElement": "ParamInitializer",
+      "extends": [
+        "css:dist/init/Initializer.jsonld#Initializer"
+      ],
+      "comment": "Assigns the value for a {@link ParamSetter}. This assignment already happens in the constructor, the actual handle call to this Initializer is irrelevant.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__generic_T"
+        }
+      ],
+      "parameters": [
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_param",
+          "range": {
+            "@type": "ParameterRangeGenericTypeReference",
+            "parameterRangeGenericType": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__generic_T"
+          }
+        },
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_paramSetter",
+          "range": {
+            "@type": "ParameterRangeUnion",
+            "parameterRangeElements": [
+              {
+                "@type": "ParameterRangeGenericComponent",
+                "component": "derived:dist/init/ParamSetter.jsonld#ParamSetter",
+                "genericTypeInstances": [
+                  {
+                    "@type": "ParameterRangeGenericTypeReference",
+                    "parameterRangeGenericType": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__generic_T"
+                  }
+                ]
+              },
+              {
+                "@type": "ParameterRangeArray",
+                "parameterRangeValue": {
+                  "@type": "ParameterRangeGenericComponent",
+                  "component": "derived:dist/init/ParamSetter.jsonld#ParamSetter",
+                  "genericTypeInstances": [
+                    {
+                      "@type": "ParameterRangeGenericTypeReference",
+                      "parameterRangeGenericType": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__generic_T"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_paramSetter"
+        },
+        {
+          "@id": "derived:dist/init/ParamInitializer.jsonld#ParamInitializer_param"
+        }
+      ]
+    }
+  ]
+}

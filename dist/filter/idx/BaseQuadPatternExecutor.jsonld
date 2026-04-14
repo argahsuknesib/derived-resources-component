@@ -1,0 +1,25 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/idx/BaseQuadPatternExecutor.jsonld#BaseQuadPatternExecutor",
+      "@type": "Class",
+      "requireElement": "BaseQuadPatternExecutor",
+      "extends": [
+        "derived:dist/filter/idx/QuadPatternExecutor.jsonld#QuadPatternExecutor"
+      ],
+      "comment": "A {@link QuadPatternExecutor} that removes all triples from a representation data stream that do not match a given quad template.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/idx/BaseQuadPatternExecutor.jsonld#BaseQuadPatternExecutor__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

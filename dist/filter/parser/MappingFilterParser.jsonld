@@ -1,0 +1,82 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser",
+      "@type": "Class",
+      "requireElement": "MappingFilterParser",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+          "genericTypeInstances": [
+            {
+              "@type": "ParameterRangeGenericTypeReference",
+              "parameterRangeGenericType": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T"
+            }
+          ]
+        }
+      ],
+      "comment": "Applies mapping values to a filter string in a {@link DerivationConfig}. Replaces `$key$` strings with the corresponding value in the mappings.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T"
+        }
+      ],
+      "parameters": [
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser_source",
+          "range": {
+            "@type": "ParameterRangeGenericComponent",
+            "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+            "genericTypeInstances": [
+              {
+                "@type": "ParameterRangeGenericTypeReference",
+                "parameterRangeGenericType": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T"
+              }
+            ]
+          }
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__member_source",
+          "memberFieldName": "source",
+          "range": {
+            "@type": "ParameterRangeGenericComponent",
+            "component": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+            "genericTypeInstances": [
+              {
+                "@type": "ParameterRangeGenericTypeReference",
+                "parameterRangeGenericType": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__generic_T"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/filter/parser/MappingFilterParser.jsonld#MappingFilterParser_source"
+        }
+      ]
+    }
+  ]
+}

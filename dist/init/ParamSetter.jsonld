@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/init/ParamSetter.jsonld#ParamSetter",
+      "@type": "AbstractClass",
+      "requireElement": "ParamSetter",
+      "comment": "Interface to be used by classes that need certain parameters, but can't receive them during constructor initialization for some reason.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/init/ParamSetter.jsonld#ParamSetter__generic_T"
+        }
+      ],
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/init/ParamSetter.jsonld#ParamSetter__member_setParam",
+          "memberFieldName": "setParam"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/DerivationManager.jsonld#DerivationManager",
+      "@type": "AbstractClass",
+      "requireElement": "DerivationManager",
+      "comment": "Responsible for handling derived resources.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/DerivationManager.jsonld#DerivationManager__member_getDerivationConfig",
+          "memberFieldName": "getDerivationConfig"
+        },
+        {
+          "@id": "derived:dist/DerivationManager.jsonld#DerivationManager__member_deriveResource",
+          "memberFieldName": "deriveResource"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

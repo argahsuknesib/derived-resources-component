@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/selector/SelectorHandler.jsonld#SelectorHandler",
+      "@type": "AbstractClass",
+      "requireElement": "SelectorHandler",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "genericTypeInstances": [
+            "derived:dist/DerivationConfig.jsonld#DerivationConfig",
+            {
+              "@type": "ParameterRangeArray",
+              "parameterRangeValue": "css:dist/http/representation/Representation.jsonld#Representation"
+            }
+          ]
+        }
+      ],
+      "comment": "Acquires one or more {@link Representation}s based on a {@link DerivationConfig}.",
+      "parameters": [],
+      "constructorArguments": []
+    }
+  ]
+}

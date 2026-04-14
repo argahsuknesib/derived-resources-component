@@ -1,0 +1,26 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/util/CacheUtil.jsonld#CachedRepresentation",
+      "@type": "AbstractClass",
+      "requireElement": "CachedRepresentation",
+      "comment": "The cached version of a representation.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/util/CacheUtil.jsonld#CachedRepresentation__member_data",
+          "memberFieldName": "data"
+        },
+        {
+          "@id": "derived:dist/util/CacheUtil.jsonld#CachedRepresentation__member_metadata",
+          "memberFieldName": "metadata"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

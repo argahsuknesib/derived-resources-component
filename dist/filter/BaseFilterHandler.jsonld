@@ -1,0 +1,59 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler",
+      "@type": "Class",
+      "requireElement": "BaseFilterHandler",
+      "extends": [
+        "derived:dist/filter/FilterHandler.jsonld#FilterHandler"
+      ],
+      "comment": "First parses the filter input into a {@link Filter} object, which it then feeds into a {@link FilterExecutor}.  Also adds timestamp en derivation metadata to the resulting {@link Representation}.",
+      "parameters": [
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_parser",
+          "range": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_executor",
+          "range": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler__member_parser",
+          "memberFieldName": "parser",
+          "range": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler__member_executor",
+          "memberFieldName": "executor",
+          "range": "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler__member_handle",
+          "memberFieldName": "handle"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_parser"
+        },
+        {
+          "@id": "derived:dist/filter/BaseFilterHandler.jsonld#BaseFilterHandler_executor"
+        }
+      ]
+    }
+  ]
+}

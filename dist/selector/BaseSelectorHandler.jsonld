@@ -1,0 +1,64 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler",
+      "@type": "Class",
+      "requireElement": "BaseSelectorHandler",
+      "extends": [
+        "derived:dist/selector/SelectorHandler.jsonld#SelectorHandler"
+      ],
+      "comment": "Determines all the input resources by calling a {@link SelectorParser} and then acquires their representations through the {@link ResourceStore}.",
+      "parameters": [
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_parser",
+          "range": "derived:dist/selector/SelectorParser.jsonld#SelectorParser"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_parser",
+          "memberFieldName": "parser",
+          "range": "derived:dist/selector/SelectorParser.jsonld#SelectorParser"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_store",
+          "memberFieldName": "store",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_handle",
+          "memberFieldName": "handle"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler__member_configToRepresentations",
+          "memberFieldName": "configToRepresentations"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_parser"
+        },
+        {
+          "@id": "derived:dist/selector/BaseSelectorHandler.jsonld#BaseSelectorHandler_store"
+        }
+      ]
+    }
+  ]
+}

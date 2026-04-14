@@ -1,0 +1,8 @@
+import { AsyncHandler } from 'asynchronous-handlers';
+import type { DerivationConfig } from '../../DerivationConfig';
+import type { Filter } from '../Filter';
+/**
+ * Interprets raw filter input into a {@link Filter} object.
+ */
+export declare abstract class FilterParser<T = unknown> extends AsyncHandler<DerivationConfig, Filter<T>> {
+}

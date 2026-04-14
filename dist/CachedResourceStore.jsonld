@@ -1,0 +1,203 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore",
+      "@type": "Class",
+      "requireElement": "CachedResourceStore",
+      "extends": [
+        "css:dist/storage/PassthroughStore.jsonld#PassthroughStore",
+        "css:dist/init/cluster/SingleThreaded.jsonld#SingleThreaded"
+      ],
+      "comment": "A {@link ResourceStore} that caches representation responses. Caching is done using the identifier as key, so this should be at the end of the store chain. after content negotiation, as that results in different representations for the same identifier.  Cache entries are invalidated after any successful write operation. Because of this, this store does not work with worker threads, as the thread invalidating the cache might not be the one that has that cache entry.  Cache settings can be set to determine the max cache entries, or the max size for the entire cache (in bytes). `maxSize` only works for binary data streams.",
+      "parameters": [
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_source",
+          "range": "css:dist/storage/ResourceStore.jsonld#ResourceStore"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_metadataStrategy",
+          "range": "css:dist/http/auxiliary/AuxiliaryIdentifierStrategy.jsonld#AuxiliaryIdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_max",
+          "range": {
+            "@type": "ParameterRangeUnion",
+            "parameterRangeElements": [
+              "xsd:number",
+              {
+                "@type": "ParameterRangeUndefined"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_maxSize",
+          "range": {
+            "@type": "ParameterRangeUnion",
+            "parameterRangeElements": [
+              "xsd:number",
+              {
+                "@type": "ParameterRangeUndefined"
+              }
+            ]
+          }
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_metadataStrategy",
+          "memberFieldName": "metadataStrategy",
+          "range": "css:dist/http/auxiliary/AuxiliaryIdentifierStrategy.jsonld#AuxiliaryIdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_cache",
+          "memberFieldName": "cache",
+          "range": {
+            "@type": "ParameterRangeGenericComponent",
+            "component": "urn:npm:lru-cache:LRUCache",
+            "genericTypeInstances": [
+              "xsd:string",
+              "derived:dist/util/CacheUtil.jsonld#CachedRepresentation"
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_cacheProgress",
+          "memberFieldName": "cacheProgress",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_hasResource",
+          "memberFieldName": "hasResource"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_getRepresentation",
+          "memberFieldName": "getRepresentation"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_addResource",
+          "memberFieldName": "addResource"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_setRepresentation",
+          "memberFieldName": "setRepresentation"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_modifyResource",
+          "memberFieldName": "modifyResource"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_deleteResource",
+          "memberFieldName": "deleteResource"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_cacheRepresentation",
+          "memberFieldName": "cacheRepresentation"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_invalidateCache",
+          "memberFieldName": "invalidateCache"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore__member_invalidateIdentifier",
+          "memberFieldName": "invalidateIdentifier"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args__constructorArgument",
+          "fields": [
+            {
+              "keyRaw": "source",
+              "value": {
+                "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_source"
+              }
+            },
+            {
+              "keyRaw": "metadataStrategy",
+              "value": {
+                "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_metadataStrategy"
+              }
+            },
+            {
+              "keyRaw": "cacheSettings",
+              "value": {
+                "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings__constructorArgument",
+                "fields": [
+                  {
+                    "keyRaw": "max",
+                    "value": {
+                      "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_max"
+                    }
+                  },
+                  {
+                    "keyRaw": "maxSize",
+                    "value": {
+                      "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStore_args_cacheSettings_maxSize"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStoreArgs",
+      "@type": "AbstractClass",
+      "requireElement": "CachedResourceStoreArgs",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStoreArgs__member_source",
+          "memberFieldName": "source"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStoreArgs__member_metadataStrategy",
+          "memberFieldName": "metadataStrategy"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CachedResourceStoreArgs__member_cacheSettings",
+          "memberFieldName": "cacheSettings"
+        }
+      ],
+      "constructorArguments": []
+    },
+    {
+      "@id": "derived:dist/CachedResourceStore.jsonld#CacheEntry",
+      "@type": "AbstractClass",
+      "requireElement": "CacheEntry",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CacheEntry__member_identifier",
+          "memberFieldName": "identifier"
+        },
+        {
+          "@id": "derived:dist/CachedResourceStore.jsonld#CacheEntry__member_representation",
+          "memberFieldName": "representation"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

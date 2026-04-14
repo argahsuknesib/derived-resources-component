@@ -1,0 +1,79 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor",
+      "@type": "Class",
+      "requireElement": "QpfFilterExecutor",
+      "extends": [
+        "derived:dist/filter/FilterExecutor.jsonld#FilterExecutor"
+      ],
+      "comment": "A {@link FilterExecutor} exposing a QPF endpoint. Due to the streaming nature of how data is used, the response will always be two pages: the first page is empty with only the metadata, the next page will contain all the data as well. For the same reason, the triple count will always be set to 1 million. The reason for using two pages is to prevent querying engines that are checking the counts from having to download all the data as well. The reason we don't return partial data on the first page is because we can't guarantee the order of the incoming data stream, so we can't know which triples would need to be returned on the second page.  To somewhat circumvent this issue, a set amount of triples will be read into memory from the data stream, before we generate the result stream. If this causes the entire stream to be read, we can give an accurate count result, meaning only large result streams will have inaccurate results. Such cases will also immediately return all their results on the first page, instead of hiding their data on a second page. By default, this value is set to 1000. It can be set to 0 to always first read all results into memory for an accurate count.",
+      "parameters": [
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadLimit",
+          "range": {
+            "@type": "ParameterRangeUnion",
+            "parameterRangeElements": [
+              "xsd:number",
+              {
+                "@type": "ParameterRangeUndefined"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadFilterParser",
+          "range": "derived:dist/filter/idx/QuadPatternExecutor.jsonld#QuadPatternExecutor"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_quadPatternExecutor",
+          "memberFieldName": "quadPatternExecutor",
+          "range": "derived:dist/filter/idx/QuadPatternExecutor.jsonld#QuadPatternExecutor"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_quadLimit",
+          "memberFieldName": "quadLimit",
+          "range": "xsd:number"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_handle",
+          "memberFieldName": "handle"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_generateFilter",
+          "memberFieldName": "generateFilter"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_getMetaQuads",
+          "memberFieldName": "getMetaQuads"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor__member_identifierToString",
+          "memberFieldName": "identifierToString"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadFilterParser"
+        },
+        {
+          "@id": "derived:dist/filter/idx/QpfFilterExecutor.jsonld#QpfFilterExecutor_quadLimit"
+        }
+      ]
+    }
+  ]
+}

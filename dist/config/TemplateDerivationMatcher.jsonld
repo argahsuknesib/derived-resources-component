@@ -1,0 +1,55 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher",
+      "@type": "Class",
+      "requireElement": "TemplateDerivationMatcher",
+      "extends": [
+        "derived:dist/config/DerivationMatcher.jsonld#DerivationMatcher"
+      ],
+      "comment": "Finds a matching derivation by matching the identifier to a template string.  Already generates the result in the `canHandle` call and stores it in a {@link WeakMap} to prevent double work.",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_cache",
+          "memberFieldName": "cache",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_canHandle",
+          "memberFieldName": "canHandle"
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_handle",
+          "memberFieldName": "handle"
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_isValidDerivedSubject",
+          "memberFieldName": "isValidDerivedSubject"
+        },
+        {
+          "@id": "derived:dist/config/TemplateDerivationMatcher.jsonld#TemplateDerivationMatcher__member_getRelevantQuads",
+          "memberFieldName": "getRelevantQuads"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

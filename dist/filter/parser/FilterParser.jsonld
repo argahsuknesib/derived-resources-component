@@ -1,0 +1,41 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solidlab/derived-resources-component/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^8.0.0/components/context.jsonld"
+  ],
+  "@id": "npmd:@solidlab/derived-resources-component",
+  "components": [
+    {
+      "@id": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser",
+      "@type": "AbstractClass",
+      "requireElement": "FilterParser",
+      "extends": [
+        {
+          "@type": "GenericComponentExtension",
+          "component": "css:dist/util/handlers/AsyncHandler.jsonld#AsyncHandler",
+          "genericTypeInstances": [
+            "derived:dist/DerivationConfig.jsonld#DerivationConfig",
+            {
+              "@type": "ParameterRangeGenericComponent",
+              "component": "derived:dist/filter/Filter.jsonld#Filter",
+              "genericTypeInstances": [
+                {
+                  "@type": "ParameterRangeGenericTypeReference",
+                  "parameterRangeGenericType": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser__generic_T"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "comment": "Interprets raw filter input into a {@link Filter} object.",
+      "genericTypeParameters": [
+        {
+          "@id": "derived:dist/filter/parser/FilterParser.jsonld#FilterParser__generic_T"
+        }
+      ],
+      "parameters": [],
+      "constructorArguments": []
+    }
+  ]
+}
