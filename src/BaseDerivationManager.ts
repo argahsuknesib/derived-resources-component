@@ -43,14 +43,20 @@ export class BaseDerivationManager implements DerivationManager {
   public async getDerivationConfig(identifier: ResourceIdentifier, metadata: RepresentationMetadata):
   Promise<DerivationConfig | undefined> {
     const derived = metadata.getAll(DERIVED.terms.derivedResource);
+    this.logger.info(`BaseDerivationManager.getDerivationConfig: identifier=${identifier.path}, metadataIdentifier=${
+      metadata.identifier.value}, derivedCount=${derived.length}`);
 
     for (const subject of derived) {
       try {
-        return await this.derivationMatcher.handleSafe({ identifier, metadata, subject });
+        const config = await this.derivationMatcher.handleSafe({ identifier, metadata, subject });
+        this.logger.info(`BaseDerivationManager.getDerivationConfig: matched subject ${subject.value} for ${
+          identifier.path}`);
+        return config;
       } catch (error: unknown) {
         this.logger.debug(`Did not found a valid derivation for ${identifier.path}: ${createErrorMessage(error)}`);
       }
     }
+    this.logger.info(`BaseDerivationManager.getDerivationConfig: no matching derivation found for ${identifier.path}`);
   }
 
   /**

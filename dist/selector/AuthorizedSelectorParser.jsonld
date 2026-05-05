@@ -32,6 +32,13 @@
       ],
       "memberFields": [
         {
+          "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_logger",
+          "memberFieldName": "logger",
+          "range": {
+            "@type": "ParameterRangeWildcard"
+          }
+        },
+        {
           "@id": "derived:dist/selector/AuthorizedSelectorParser.jsonld#AuthorizedSelectorParser__member_source",
           "memberFieldName": "source",
           "range": "derived:dist/selector/SelectorParser.jsonld#SelectorParser"

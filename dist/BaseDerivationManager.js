@@ -25,14 +25,18 @@ class BaseDerivationManager {
      */
     async getDerivationConfig(identifier, metadata) {
         const derived = metadata.getAll(Vocabularies_1.DERIVED.terms.derivedResource);
+        this.logger.info(`BaseDerivationManager.getDerivationConfig: identifier=${identifier.path}, metadataIdentifier=${metadata.identifier.value}, derivedCount=${derived.length}`);
         for (const subject of derived) {
             try {
-                return await this.derivationMatcher.handleSafe({ identifier, metadata, subject });
+                const config = await this.derivationMatcher.handleSafe({ identifier, metadata, subject });
+                this.logger.info(`BaseDerivationManager.getDerivationConfig: matched subject ${subject.value} for ${identifier.path}`);
+                return config;
             }
             catch (error) {
                 this.logger.debug(`Did not found a valid derivation for ${identifier.path}: ${(0, community_server_1.createErrorMessage)(error)}`);
             }
         }
+        this.logger.info(`BaseDerivationManager.getDerivationConfig: no matching derivation found for ${identifier.path}`);
     }
     /**
      * Generates the representation for the derived resource.

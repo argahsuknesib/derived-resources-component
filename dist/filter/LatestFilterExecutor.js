@@ -2,15 +2,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LatestFilterExecutor = void 0;
 const community_server_1 = require("@solid/community-server");
+const global_logger_factory_1 = require("global-logger-factory");
 const Vocabularies_1 = require("../Vocabularies");
 const FilterExecutor_1 = require("./FilterExecutor");
 class LatestFilterExecutor extends FilterExecutor_1.FilterExecutor {
+    logger = (0, global_logger_factory_1.getLoggerFor)(this);
     async canHandle({ filter }) {
         if (!filter.type.equals(Vocabularies_1.DERIVED_TYPES.terms.String) || filter.data !== 'latest') {
             throw new community_server_1.NotImplementedHttpError('Only "latest" literals are supported.');
         }
     }
     async handle(input) {
+        const ids = input.representations.map((representation) => representation.metadata.identifier.value);
+        this.logger.info(`LatestFilterExecutor.handle: representationCount=${input.representations.length}, ids=${JSON.stringify(ids)}`);
         if (input.representations.length === 0) {
             throw new community_server_1.NotFoundHttpError();
         }

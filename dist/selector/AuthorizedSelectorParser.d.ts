@@ -13,6 +13,7 @@ import { SelectorParser } from './SelectorParser';
  * if the {@link DerivationConfig} contains the `derived:ReadableSources` feature.
  */
 export declare class AuthorizedSelectorParser extends SelectorParser implements ParamSetter<PermissionReader> {
+    protected readonly logger: import("global-logger-factory").Logger<unknown>;
     protected readonly source: SelectorParser;
     protected readonly storage: CredentialsStorage;
     protected internalPermissionReader: PermissionReader | undefined;

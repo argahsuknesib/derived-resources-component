@@ -19,6 +19,12 @@ export declare class GlobSelectorParser extends SelectorParser {
     handle({ selectors }: DerivationConfig): Promise<ResourceIdentifier[]>;
     protected handleSelector(path: string): AsyncIterable<ResourceIdentifier>;
     /**
+     * Ensures `ldp:contains` values are absolute against the container path.
+     * Some stores expose relative IRIs in metadata (e.g., `<abc123>`), which
+     * would never match absolute selectors such as `http://.../spo2/*`.
+     */
+    protected normalizeChildPath(childPath: string, containerPath: string): string;
+    /**
      * Handles the case of having a `*` or `**` next to non-`/` characters.
      * E.g., `/foo/*.js`.
      * `**` is treated identical as `*` in this case.

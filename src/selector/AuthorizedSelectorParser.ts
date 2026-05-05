@@ -7,6 +7,7 @@ import {
   IdentifierSetMultiMap,
   InternalServerError,
 } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import type { CredentialsStorage } from '../credentials/CredentialsStorage';
 import type { DerivationConfig } from '../DerivationConfig';
 import type { ParamSetter } from '../init/ParamSetter';
@@ -23,6 +24,8 @@ import { SelectorParser } from './SelectorParser';
  * if the {@link DerivationConfig} contains the `derived:ReadableSources` feature.
  */
 export class AuthorizedSelectorParser extends SelectorParser implements ParamSetter<PermissionReader> {
+  protected readonly logger = getLoggerFor(this);
+
   protected readonly source: SelectorParser;
   protected readonly storage: CredentialsStorage;
   protected internalPermissionReader: PermissionReader | undefined;
@@ -50,8 +53,11 @@ export class AuthorizedSelectorParser extends SelectorParser implements ParamSet
 
   public async handle(config: DerivationConfig): Promise<ResourceIdentifier[]> {
     const identifiers = await this.source.handle(config);
+    this.logger.info(`AuthorizedSelectorParser.handle: initialIdentifiers=${
+      JSON.stringify(identifiers.map((identifier): string => identifier.path))}`);
 
     if (!config.metadata.has(DERIVED.terms.feature, DERIVED.terms.ReadableSources)) {
+      this.logger.info('AuthorizedSelectorParser.handle: readableSources feature disabled, skipping permission filter');
       return identifiers;
     }
 
@@ -62,6 +68,9 @@ export class AuthorizedSelectorParser extends SelectorParser implements ParamSet
     }
 
     const permissions = await this.permissionReader.handleSafe({ credentials, requestedModes });
-    return identifiers.filter((identifier): boolean => Boolean(permissions.get(identifier)?.read));
+    const filtered = identifiers.filter((identifier): boolean => Boolean(permissions.get(identifier)?.read));
+    this.logger.info(`AuthorizedSelectorParser.handle: readableSources feature enabled, filteredIdentifiers=${
+      JSON.stringify(filtered.map((identifier): string => identifier.path))}`);
+    return filtered;
   }
 }

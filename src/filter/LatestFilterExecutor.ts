@@ -1,10 +1,13 @@
 import type { Representation } from '@solid/community-server';
 import { DC, InternalServerError, NotFoundHttpError, NotImplementedHttpError } from '@solid/community-server';
+import { getLoggerFor } from 'global-logger-factory';
 import { DERIVED_TYPES } from '../Vocabularies';
 import type { FilterExecutorInput } from './FilterExecutor';
 import { FilterExecutor } from './FilterExecutor';
 
 export class LatestFilterExecutor extends FilterExecutor {
+  protected logger = getLoggerFor(this);
+
   public async canHandle({ filter }: FilterExecutorInput): Promise<void> {
     if (!filter.type.equals(DERIVED_TYPES.terms.String) || filter.data !== 'latest') {
       throw new NotImplementedHttpError('Only "latest" literals are supported.');
@@ -12,6 +15,9 @@ export class LatestFilterExecutor extends FilterExecutor {
   }
 
   public async handle(input: FilterExecutorInput): Promise<Representation> {
+    const ids = input.representations.map((representation): string => representation.metadata.identifier.value);
+    this.logger.info(`LatestFilterExecutor.handle: representationCount=${input.representations.length}, ids=${
+      JSON.stringify(ids)}`);
     if (input.representations.length === 0) {
       throw new NotFoundHttpError();
     }

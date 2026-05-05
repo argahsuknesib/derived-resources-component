@@ -34,6 +34,8 @@ export class TemplateDerivationMatcher extends DerivationMatcher {
   public async canHandle({ identifier, metadata, subject }: DerivationMatcherInput): Promise<void> {
     // Templates are relative to the resource they are linked to
     const relative = identifier.path.slice(metadata.identifier.value.length);
+    this.logger.debug(`TemplateDerivationMatcher.canHandle: identifier=${identifier.path}, metadataIdentifier=${
+      metadata.identifier.value}, subject=${subject.value}, relative=${relative}`);
     if (!this.isValidDerivedSubject(subject)) {
       throw new NotImplementedHttpError();
     }
@@ -49,11 +51,14 @@ export class TemplateDerivationMatcher extends DerivationMatcher {
     if (queryMatch) {
       template = template.slice(0, queryMatch.index);
     }
+    this.logger.debug(`TemplateDerivationMatcher.canHandle: normalizedTemplate=${template}`);
 
     const match = new Template(template).match(relative);
     if (!match) {
+      this.logger.debug('TemplateDerivationMatcher.canHandle: no template match');
       throw new NotImplementedHttpError();
     }
+    this.logger.debug(`TemplateDerivationMatcher.canHandle: match=${JSON.stringify(match)}`);
 
     this.cache.set(identifier, match);
   }

@@ -36,12 +36,15 @@ class DerivedResourceStore extends community_server_1.PassthroughStore {
         const identifierExists = firstResource.metadata.identifier.value === identifier.path;
         const config = await this.manager.getDerivationConfig(identifier, firstResource.metadata);
         if (!config && identifierExists) {
+            this.logger.info(`No derivation config found for existing resource ${identifier.path}; returning stored representation.`);
             return firstResource;
         }
         this.closeDataStream(firstResource);
         if (!config) {
+            this.logger.info(`No derivation config found for ${identifier.path} using ancestor ${firstResource.metadata.identifier.value}; throwing 404.`);
             throw new community_server_1.NotFoundHttpError();
         }
+        this.logger.info(`Resolved derivation config for ${identifier.path}: selectors=${JSON.stringify(config.selectors)}, filter=${config.filter}`);
         const result = await this.manager.deriveResource(identifier, config);
         // Reuse metadata if the resource had existing metadata
         if (identifierExists) {
@@ -131,8 +134,10 @@ class DerivedResourceStore extends community_server_1.PassthroughStore {
      * Closes the data stream in the representation, without emitting an error.
      */
     closeDataStream(representation) {
+        // Best-effort drain of the stream. Destroying can surface as "premature close"
+        // in downstream pipeline consumers during startup/initialization probes.
         representation.data.on('error', () => { });
-        representation.data.destroy();
+        representation.data.resume();
     }
 }
 exports.DerivedResourceStore = DerivedResourceStore;

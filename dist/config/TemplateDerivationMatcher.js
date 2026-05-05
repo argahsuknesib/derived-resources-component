@@ -26,6 +26,7 @@ class TemplateDerivationMatcher extends DerivationMatcher_1.DerivationMatcher {
     async canHandle({ identifier, metadata, subject }) {
         // Templates are relative to the resource they are linked to
         const relative = identifier.path.slice(metadata.identifier.value.length);
+        this.logger.debug(`TemplateDerivationMatcher.canHandle: identifier=${identifier.path}, metadataIdentifier=${metadata.identifier.value}, subject=${subject.value}, relative=${relative}`);
         if (!this.isValidDerivedSubject(subject)) {
             throw new community_server_1.NotImplementedHttpError();
         }
@@ -39,10 +40,13 @@ class TemplateDerivationMatcher extends DerivationMatcher_1.DerivationMatcher {
         if (queryMatch) {
             template = template.slice(0, queryMatch.index);
         }
+        this.logger.debug(`TemplateDerivationMatcher.canHandle: normalizedTemplate=${template}`);
         const match = new uri_template_lite_1.default(template).match(relative);
         if (!match) {
+            this.logger.debug('TemplateDerivationMatcher.canHandle: no template match');
             throw new community_server_1.NotImplementedHttpError();
         }
+        this.logger.debug(`TemplateDerivationMatcher.canHandle: match=${JSON.stringify(match)}`);
         this.cache.set(identifier, match);
     }
     async handle({ identifier, metadata, subject }) {

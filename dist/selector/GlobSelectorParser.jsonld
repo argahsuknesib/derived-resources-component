@@ -45,6 +45,10 @@
           "memberFieldName": "handleSelector"
         },
         {
+          "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_normalizeChildPath",
+          "memberFieldName": "normalizeChildPath"
+        },
+        {
           "@id": "derived:dist/selector/GlobSelectorParser.jsonld#GlobSelectorParser__member_handleInternalGlob",
           "memberFieldName": "handleInternalGlob"
         },

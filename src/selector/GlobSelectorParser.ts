@@ -34,10 +34,13 @@ export class GlobSelectorParser extends SelectorParser {
   }
 
   public async handle({ selectors }: DerivationConfig): Promise<ResourceIdentifier[]> {
+    this.logger.debug(`GlobSelectorParser.handle: selectors=${JSON.stringify(selectors)}`);
     const promises = selectors.map(async(selector): Promise<ResourceIdentifier[]> =>
       asyncToArray(this.handleSelector(selector)));
 
-    return (await Promise.all(promises)).flat();
+    const result = (await Promise.all(promises)).flat();
+    this.logger.debug(`GlobSelectorParser.handle: matchedIdentifiers=${JSON.stringify(result.map((id): string => id.path))}`);
+    return result;
   }
 
   protected async* handleSelector(path: string): AsyncIterable<ResourceIdentifier> {
@@ -56,7 +59,10 @@ export class GlobSelectorParser extends SelectorParser {
 
     const containerPath = head.slice(0, head.lastIndexOf('/') + 1);
     const container = await this.store.getRepresentation({ path: containerPath }, {});
-    const childPaths = container.metadata.getAll(LDP.terms.contains).map((term): string => term.value);
+    const childPaths = container.metadata.getAll(LDP.terms.contains).map((term): string => term.value)
+      .map((child): string => this.normalizeChildPath(child, containerPath));
+    this.logger.debug(`GlobSelectorParser.handleSelector: path=${path}, containerPath=${containerPath}, childCount=${
+      childPaths.length}`);
     const params: GlobParameters = { glob, head, tail, childPaths };
 
     if (!head.endsWith('/') || (tail.length > 0 && !tail.startsWith('/'))) {
@@ -65,6 +71,23 @@ export class GlobSelectorParser extends SelectorParser {
       yield* this.handleDouble(params);
     } else if (glob === '*') {
       yield* this.handleSingle(params);
+    }
+  }
+
+  /**
+   * Ensures `ldp:contains` values are absolute against the container path.
+   * Some stores expose relative IRIs in metadata (e.g., `<abc123>`), which
+   * would never match absolute selectors such as `http://.../spo2/*`.
+   */
+  protected normalizeChildPath(childPath: string, containerPath: string): string {
+    if (/^[a-z][a-z0-9+.-]*:/iu.test(childPath) || childPath.startsWith('/')) {
+      return childPath;
+    }
+
+    try {
+      return new URL(childPath, containerPath).toString();
+    } catch {
+      return childPath;
     }
   }
 

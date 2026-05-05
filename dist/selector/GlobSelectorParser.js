@@ -17,8 +17,11 @@ class GlobSelectorParser extends SelectorParser_1.SelectorParser {
         this.store = store;
     }
     async handle({ selectors }) {
+        this.logger.debug(`GlobSelectorParser.handle: selectors=${JSON.stringify(selectors)}`);
         const promises = selectors.map(async (selector) => (0, community_server_1.asyncToArray)(this.handleSelector(selector)));
-        return (await Promise.all(promises)).flat();
+        const result = (await Promise.all(promises)).flat();
+        this.logger.debug(`GlobSelectorParser.handle: matchedIdentifiers=${JSON.stringify(result.map((id) => id.path))}`);
+        return result;
     }
     async *handleSelector(path) {
         const match = /\*\*?/u.exec(path);
@@ -35,7 +38,9 @@ class GlobSelectorParser extends SelectorParser_1.SelectorParser {
         const tail = path.slice(match.index + glob.length);
         const containerPath = head.slice(0, head.lastIndexOf('/') + 1);
         const container = await this.store.getRepresentation({ path: containerPath }, {});
-        const childPaths = container.metadata.getAll(community_server_1.LDP.terms.contains).map((term) => term.value);
+        const childPaths = container.metadata.getAll(community_server_1.LDP.terms.contains).map((term) => term.value)
+            .map((child) => this.normalizeChildPath(child, containerPath));
+        this.logger.debug(`GlobSelectorParser.handleSelector: path=${path}, containerPath=${containerPath}, childCount=${childPaths.length}`);
         const params = { glob, head, tail, childPaths };
         if (!head.endsWith('/') || (tail.length > 0 && !tail.startsWith('/'))) {
             yield* this.handleInternalGlob(params);
@@ -45,6 +50,22 @@ class GlobSelectorParser extends SelectorParser_1.SelectorParser {
         }
         else if (glob === '*') {
             yield* this.handleSingle(params);
+        }
+    }
+    /**
+     * Ensures `ldp:contains` values are absolute against the container path.
+     * Some stores expose relative IRIs in metadata (e.g., `<abc123>`), which
+     * would never match absolute selectors such as `http://.../spo2/*`.
+     */
+    normalizeChildPath(childPath, containerPath) {
+        if (/^[a-z][a-z0-9+.-]*:/iu.test(childPath) || childPath.startsWith('/')) {
+            return childPath;
+        }
+        try {
+            return new URL(childPath, containerPath).toString();
+        }
+        catch {
+            return childPath;
         }
     }
     /**
