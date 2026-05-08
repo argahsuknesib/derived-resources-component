@@ -402,6 +402,9 @@
           },
           "identifierStrategy": {
             "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy"
+          },
+          "converter": {
+            "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_converter"
           }
         }
       },

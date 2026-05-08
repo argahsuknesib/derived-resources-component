@@ -25,6 +25,10 @@
         {
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy",
           "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_converter",
+          "range": "css:dist/storage/conversion/RepresentationConverter.jsonld#RepresentationConverter"
         }
       ],
       "memberFields": [
@@ -44,6 +48,11 @@
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_identifierStrategy",
           "memberFieldName": "identifierStrategy",
           "range": "css:dist/util/identifiers/IdentifierStrategy.jsonld#IdentifierStrategy"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_converter",
+          "memberFieldName": "converter",
+          "range": "css:dist/storage/conversion/RepresentationConverter.jsonld#RepresentationConverter"
         },
         {
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_constructor",
@@ -92,6 +101,18 @@
         {
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_closeDataStream",
           "memberFieldName": "closeDataStream"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_finalizeDerivedRepresentation",
+          "memberFieldName": "finalizeDerivedRepresentation"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_countInternalQuads",
+          "memberFieldName": "countInternalQuads"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore__member_logFinalRepresentation",
+          "memberFieldName": "logFinalRepresentation"
         }
       ],
       "constructorArguments": [
@@ -103,6 +124,9 @@
         },
         {
           "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_identifierStrategy"
+        },
+        {
+          "@id": "derived:dist/DerivedResourceStore.jsonld#DerivedResourceStore_converter"
         }
       ]
     }

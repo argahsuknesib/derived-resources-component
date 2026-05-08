@@ -4,16 +4,20 @@ import type {
   IdentifierStrategy,
   Patch,
   Representation,
+  RepresentationConverter,
   RepresentationPreferences,
   ResourceIdentifier,
   ResourceStore,
 } from '@solid/community-server';
 import { getLoggerFor } from 'global-logger-factory';
 import {
+  BasicRepresentation,
   DC,
+  INTERNAL_QUADS,
   MethodNotAllowedHttpError,
   NotFoundHttpError,
   PassthroughStore,
+  transformSafely,
 } from '@solid/community-server';
 import type { DerivationManager } from './DerivationManager';
 
@@ -27,11 +31,18 @@ export class DerivedResourceStore extends PassthroughStore {
 
   protected readonly manager: DerivationManager;
   protected readonly identifierStrategy: IdentifierStrategy;
+  protected readonly converter: RepresentationConverter;
 
-  public constructor(source: ResourceStore, manager: DerivationManager, identifierStrategy: IdentifierStrategy) {
+  public constructor(
+    source: ResourceStore,
+    manager: DerivationManager,
+    identifierStrategy: IdentifierStrategy,
+    converter: RepresentationConverter,
+  ) {
     super(source);
     this.manager = manager;
     this.identifierStrategy = identifierStrategy;
+    this.converter = converter;
   }
 
   public async hasResource(identifier: ResourceIdentifier): Promise<boolean> {
@@ -73,7 +84,7 @@ export class DerivedResourceStore extends PassthroughStore {
     }
     this.logger.info(`Resolved derivation config for ${identifier.path}: selectors=${
       JSON.stringify(config.selectors)}, filter=${config.filter}`);
-    const result = await this.manager.deriveResource(identifier, config);
+    let result = await this.manager.deriveResource(identifier, config);
 
     // Reuse metadata if the resource had existing metadata
     if (identifierExists) {
@@ -84,7 +95,7 @@ export class DerivedResourceStore extends PassthroughStore {
       result.metadata.setMetadata(firstResource.metadata);
     }
 
-    return result;
+    return this.finalizeDerivedRepresentation(identifier, preferences, result);
   }
 
   public async addResource(
@@ -189,5 +200,72 @@ export class DerivedResourceStore extends PassthroughStore {
     // in downstream pipeline consumers during startup/initialization probes.
     representation.data.on('error', (): void => {});
     representation.data.resume();
+  }
+
+  /**
+   * Ensures derived RDF resources leave this store with an external HTTP media type.
+   */
+  protected async finalizeDerivedRepresentation(
+    identifier: ResourceIdentifier,
+    preferences: RepresentationPreferences,
+    representation: Representation,
+  ): Promise<Representation> {
+    const quadStats = { count: 0 };
+    let result = representation;
+
+    if (representation.metadata.contentType === INTERNAL_QUADS) {
+      this.logger.info(`DerivedResourceStore: converting internal RDF representation for ${
+        identifier.path} using preferences=${JSON.stringify(preferences.type ?? {})}`);
+      result = await this.converter.handleSafe({
+        identifier,
+        representation: this.countInternalQuads(representation, quadStats),
+        preferences,
+      });
+    }
+
+    return this.logFinalRepresentation(identifier, result, quadStats);
+  }
+
+  /**
+   * Counts the quads that flow through an internal RDF representation.
+   */
+  protected countInternalQuads(representation: Representation, stats: { count: number }): Representation {
+    const counted = transformSafely(representation.data, {
+      objectMode: true,
+      transform: (quad): void => {
+        stats.count += 1;
+        counted.push(quad);
+      },
+    });
+
+    return new BasicRepresentation(counted, representation.metadata, representation.binary);
+  }
+
+  /**
+   * Logs the final response characteristics without consuming the stream ahead of CSS.
+   */
+  protected logFinalRepresentation(
+    identifier: ResourceIdentifier,
+    representation: Representation,
+    quadStats: { count: number },
+  ): Representation {
+    let byteCount = 0;
+    const logged = transformSafely(representation.data, {
+      objectMode: representation.data.readableObjectMode,
+      transform: (chunk): void => {
+        if (typeof chunk === 'string') {
+          byteCount += Buffer.byteLength(chunk);
+        } else if (Buffer.isBuffer(chunk)) {
+          byteCount += chunk.byteLength;
+        }
+        logged.push(chunk);
+      },
+      flush: (): void => {
+        this.logger.info(`DerivedResourceStore: final representation for ${identifier.path}: contentType=${
+          representation.metadata.contentType ?? 'undefined'}, quadCount=${quadStats.count}, byteCount=${byteCount}`);
+      },
+    });
+
+    return new BasicRepresentation(logged, representation.metadata, representation.binary);
   }
 }

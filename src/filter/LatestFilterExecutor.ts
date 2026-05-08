@@ -35,6 +35,9 @@ export class LatestFilterExecutor extends FilterExecutor {
         lastDate = date;
       }
     }
+    this.logger.info(`LatestFilterExecutor.handle: selected source resource id=${
+      latest.metadata.identifier.value}, modified=${lastDate.toISOString()}, contentType=${
+      latest.metadata.contentType ?? 'undefined'}`);
     return latest;
   }
 }

@@ -8,6 +8,7 @@
       "comment": "The store responsible for generating derived resources.",
       "@id": "urn:solid-server:derived:DerivedResourceStore",
       "@type": "DerivedResourceStore",
+      "converter": { "@id": "urn:solid-server:default:RepresentationConverter" },
       "identifierStrategy": { "@id": "urn:solid-server:default:IdentifierStrategy" },
       "source": { "@id": "urn:solid-server:default:ResourceStore_Patching" },
       "manager": { "@id": "urn:solid-server:derived:DerivationManager" }
